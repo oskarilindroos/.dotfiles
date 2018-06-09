@@ -30,8 +30,7 @@ font pango:Fixedsys Excelsior 3.01 18
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
+bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+q kill
 
