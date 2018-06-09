@@ -56,7 +56,7 @@ map <C-h> :vertical resize -5<CR>
 map <C-l> :vertical resize +5<CR>
 map <C-j> :resize +5<CR>
 map <C-k> :resize -5<CR>
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 map <C-o> :bnext<CR> " Bind 'Ctrl+o' to change to next buffer
 map <C-i> :bprev<CR> " Bind 'Ctrl+i' to change to previous buffer
 map <F9> :call ToggleWrap()<CR> " Bind 'F9' to toggle line wrapping
@@ -87,7 +87,7 @@ colorscheme delek
 set background=light
 
 " Change font
-set guifont=Ubuntu\ Mono\ 16
+set guifont=DejaVu\ Sans\ Mono\ 16
 
 " Set nerd tree arrows
 let g:NERDTreeDirArrowExpandable = '+'
