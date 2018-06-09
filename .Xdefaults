@@ -4,7 +4,7 @@ urxvt.scrollBar: false
 urxvt.cursorColor: magenta
 
 urxvt*transparent: true
-urxvt*shading: 30
+urxvt*shading: 15
 !! General stuff
 urxvt.saveLines: 1000000
 
