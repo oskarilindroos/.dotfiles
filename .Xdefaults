@@ -1,20 +1,20 @@
 !! Appearance
-urxvt.termName: rxvt-unicode
-urxvt.scrollBar: false
-urxvt.cursorColor: magenta
+URxvt.termName: rxvt-unicode
+URxvt.scrollBar: false
+URxvt.cursorColor: magenta
 
-urxvt*transparent: true
-urxvt*shading: 15
+URxvt*transparent: true
+URxvt*shading: 15
 !! General stuff
-urxvt.saveLines: 1000000
+URxvt.saveLines: 1000000
 
 !! Font
-urxvt.font: xft:DejaVu Sans Mono:size=12
-urxvt.intensityStyles: true
+URxvt.font: xft:DejaVu Sans Mono:size=12
+URxvt.intensityStyles: true
 
 
 !! Extensions
-urxvt.perl-ext-common: default,matcher,resize-font,keyboard-select
+URxvt.perl-ext-common: default,matcher,resize-font,keyboard-select
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 
 URxvt.keyboard-select.clipboard: true
@@ -48,3 +48,6 @@ URxvt.color14 : #55FFFF
 ! white
 URxvt.color7  : #AAAAAA
 URxvt.color15 : #FFFFFF
+
+
+
