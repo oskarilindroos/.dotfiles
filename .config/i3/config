@@ -190,7 +190,7 @@ set $inactive-text-color    #000000
 set $urgent-bg-color        #000000 
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #000000 #00CCFF #2e9ef4   #285577
+client.focused          #003BFF #000000 #ffffff #2e9ef4   #285577
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -206,7 +206,7 @@ bar {
            statusline #eeeeee
            separator #666666
            #                  border  backgr. text
-           focused_workspace  #4c7899 #000000 #ffffff
+           focused_workspace  #003BFF #000000 #ffffff
            active_workspace   #333333 #000000 #D9D1D1
            inactive_workspace #333333 #000000 #888888
            urgent_workspace   #2f343a #900000 #ffffff
