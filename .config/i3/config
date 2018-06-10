@@ -144,6 +144,7 @@ workspace $ws0 output DP-4
 for_window [class="Spotify"] move to workspace $ws10
 assign [class="Chromium-browser"] $ws2
 assign [class="Pavucontrol"] $ws10
+for_window [class="Yad"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -198,15 +199,15 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 bar {
-    status_command i3blocks
     output DVI-I-1
+    status_command i3status
      colors {
            background #000000
            statusline #eeeeee
            separator #666666
            #                  border  backgr. text
-           focused_workspace  #4c7899 #000000 #00CCFF
-           active_workspace   #333333 #000000 #ffffff
+           focused_workspace  #4c7899 #000000 #ffffff
+           active_workspace   #333333 #000000 #D9D1D1
            inactive_workspace #333333 #000000 #888888
            urgent_workspace   #2f343a #900000 #ffffff
         }
@@ -220,8 +221,8 @@ bar {
            statusline #eeeeee
            separator #666666
            #                  border  backgr. text
-           focused_workspace  #4c7899 #000000 #00CCFF
-           active_workspace   #333333 #000000 #ffffff
+           focused_workspace  #003BFF #000000 #ffffff
+           active_workspace   #333333 #000000 #D9D1D1
            inactive_workspace #333333 #000000 #888888
            urgent_workspace   #2f343a #900000 #ffffff
         }
@@ -230,8 +231,7 @@ bar {
 
 #bar 2                                
 bar {
-# status_command i3blocks 
-     status_command i3status
+     status_command i3blocks 
      position top
      output DP-4
      workspace_buttons no
@@ -241,7 +241,6 @@ bar {
 # Exec on startup
 exec --no-startup-id compton
 exec --no-startup-id chromium-browser
-exec --no-startup-id spotify
 exec --no-startup-id pavucontrol
 exec --no-startup-id layout-script.sh
 
@@ -269,3 +268,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Binds to execute scripts
 bindsym $mod+Shift+p exec imgur-screenshot.sh
+
+# For i3blocks key indicator
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
