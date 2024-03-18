@@ -102,6 +102,7 @@ source ~/.profile
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim="nvim"
 
 # pnpm
 export PNPM_HOME="/home/oskari/.local/share/pnpm"
