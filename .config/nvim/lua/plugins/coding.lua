@@ -1,16 +1,31 @@
 return {
+  -- Use <tab> for completion and snippets (supertab)
+  -- first: disable default <tab> and <s-tab> behavior in LuaSnip
+  {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {}
+    end,
+  },
+
+  -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+    },
+    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
 
-      cmp.setup({
-        preselect = cmp.PreselectMode.None,
-        completion = { completeopt = "noselect" },
-        mapping = {
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        },
+      opts.preselect = cmp.PreselectMode.None
+      opts.completion = {
+        completeopt = "menu,menuone,noinsert",
+      }
+
+      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<Tab>"] = cmp.mapping.confirm(),
+        ["<CR>"] = cmp.config.disable,
       })
     end,
   },

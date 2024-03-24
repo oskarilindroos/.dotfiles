@@ -6,8 +6,14 @@ return {
         "stylua",
         "selene",
         "luacheck",
+        "gopls",
+        "gofumpt",
+        "goimports",
         "shellcheck",
         "shfmt",
+        "eslint-lsp",
+        "dockerfile-language-server",
+        "docker-compose-language-service",
         "tailwindcss-language-server",
         "typescript-language-server",
         "lua-language-server",
@@ -36,5 +42,35 @@ return {
         "go",
       },
     },
+  },
+
+  {
+    "hrsh7th/cmp-cmdline",
+    config = function()
+      local cmp = require("cmp")
+
+      -- `/` cmdline setup.
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
+    end,
   },
 }
