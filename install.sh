@@ -10,7 +10,7 @@ sudo apt install -y git stow zsh tmux neovim ripgrep lazygit
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install starship
-curl -fsSL https://starship.rs/install.sh | bash
+curl -sS https://starship.rs/install.sh | sh
 
 # Make symbolic links
 stow .
