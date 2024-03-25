@@ -8,6 +8,11 @@ return {
     end,
   },
 
+  {
+    "tpope/vim-fugitive",
+    cmd = "Git",
+  },
+
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
