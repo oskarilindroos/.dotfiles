@@ -11,13 +11,10 @@ vim.keymap.set('n', '<C-Down>', ':resize -4<CR>')
 vim.keymap.set('n', '<C-Left>', ':vertical resize +4<CR>')
 vim.keymap.set('n', '<C-Right>', ':vertical resize -4<CR>')
 vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = 'Resize windows equally' })
--- open file_browser with the path of the current buffer
-vim.keymap.set('n', '<leader>f', ':Telescope file_browser<CR>', { desc = 'File explorer' })
 
 -- Splits
 vim.keymap.set('n', '<leader>-', ':split<CR>', { desc = 'Horizontal split' })
 vim.keymap.set('n', '<leader>|', ':vsplit<CR>', { desc = 'Vertical split' })
-print 'hello world'
 
 -- Dark/light background toggle
 vim.keymap.set('n', '<leader>ub', ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { desc = 'Toggle dark/light mode' })
