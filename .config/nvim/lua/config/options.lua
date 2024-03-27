@@ -37,6 +37,9 @@ vim.opt.signcolumn = 'yes'
 -- True colors
 vim.opt.termguicolors = true
 
+-- Use light mode by default
+vim.opt.background = 'light'
+
 -- Decrease update time
 vim.opt.updatetime = 250
 
