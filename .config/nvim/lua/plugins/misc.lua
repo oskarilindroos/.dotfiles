@@ -17,4 +17,11 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
+
+  -- Save and restore session
+  {
+    'folke/persistence.nvim',
+    event = 'BufReadPre',
+    opts = { options = vim.opt.sessionoptions:get() },
+  },
 }
