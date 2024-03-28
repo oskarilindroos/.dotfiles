@@ -93,7 +93,6 @@ return {
       local servers = {
         clangd = {}, -- C lsp
         cpptools = {}, -- C++ lsp
-        csharp_ls = {}, -- C# lsp
         gopls = {}, -- Golang lsp
         gofumpt = {},
         goimports = {},
@@ -101,11 +100,15 @@ return {
         docker_compose_language_service = {}, -- Docker compose lsp
         cssls = {}, -- CSS lsp
         prettier = {}, -- Prettier formatter
+        prettierd = {}, -- Prettier formatter
         tsserver = {}, -- Type/javasript lsp
         tailwindcss = {}, -- Tailwind lsp
         jsonls = {}, -- JSON lsp
         yamlls = {}, -- Yaml lsp
         stylua = {}, -- Lua formatter
+        -- sqlfluff = {}, -- SQL Linter
+        -- sqlfmt = {}, -- SQL Formatter
+        sqlls = {}, -- SQL LSP
         markdownlint = {}, -- Markdown linter
         lua_ls = { -- Lua LSP
           -- cmd = {...},
@@ -149,7 +152,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'go' },
+      -- ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'go', 'sql' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -173,5 +176,4 @@ return {
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
-
 }

@@ -28,26 +28,26 @@ return {
       end
 
       local starter = require 'mini.starter'
-  --stylua: ignore
-  local config = {
-    evaluate_single = true,
-    header = logo,
-    items = {
-      new_section("Find file",       "Telescope find_files",                                   "Telescope"),
-      new_section("Recent files",    "Telescope oldfiles",                                     "Telescope"),
-      new_section("Grep text",       "Telescope live_grep",                                    "Telescope"),
-      new_section("Config",          "Telescope find_files { cwd = vim.fn.stdpath 'config' }", "Config"),
-      new_section("Lazy",            "Lazy",                                                   "Config"),
-      new_section("New file",        "ene | startinsert",                                      "Built-in"),
-      new_section("Quit",            "qa",                                                     "Built-in"),
-      new_section("Session restore", [[lua require("persistence").load()]],                    "Session"),
-    },
-    footer = nil,
-    content_hooks = {
-      starter.gen_hook.adding_bullet(pad .. "░ ", false),
-      starter.gen_hook.aligning("center", "center"),
-    },
-  }
+      --stylua: ignore
+      local config = {
+        evaluate_single = true,
+        header = logo,
+        items = {
+          new_section("Find file",       "Telescope find_files",                                   "Telescope"),
+          new_section("Recent files",    "Telescope oldfiles",                                     "Telescope"),
+          new_section("Grep text",       "Telescope live_grep",                                    "Telescope"),
+          new_section("Config",          "Telescope find_files { cwd = vim.fn.stdpath 'config' }", "Config"),
+          new_section("Lazy",            "Lazy",                                                   "Config"),
+          new_section("New file",        "ene | startinsert",                                      "Built-in"),
+          new_section("Quit",            "qa",                                                     "Built-in"),
+          new_section("Session restore", [[lua require("persistence").load()]],                    "Session"),
+        },
+        footer = nil,
+        content_hooks = {
+          starter.gen_hook.adding_bullet(pad .. "░ ", false),
+          starter.gen_hook.aligning("center", "center"),
+        },
+      }
       return config
     end,
   },
@@ -147,4 +147,41 @@ return {
       }
     end,
   },
+
+  -- Better diagnostics, quickfix list
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = { 'TroubleToggle', 'Trouble' },
+    keys = {
+      { '<leader>cx', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
+      { '<leader>cX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
+      { '<leader>cL', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>cQ', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
+    },
+    opts = {},
+  },
+
+  -- Render diagnostics using virtual lines on top of the real line of code
+  {
+    'https://git.sr.ht/%7Ewhynothugo/lsp_lines.nvim',
+    config = function()
+      require('lsp_lines').setup()
+
+      -- Use virtual text by default
+      vim.diagnostic.config {
+        virtual_text = true,
+        virtual_lines = false,
+      }
+
+      -- Keybind to toggle virtual lines and virtual text
+      vim.keymap.set('n', '<leader>e', function()
+        local virtual_lines_enabled = not vim.diagnostic.config().virtual_lines
+        vim.diagnostic.config { virtual_lines = virtual_lines_enabled, virtual_text = not virtual_lines_enabled }
+      end, { desc = 'Toggle diagnostics vline/text' })
+    end,
+  },
+
+  -- Show lightbulb when code actions are available
+  { 'kosayoda/nvim-lightbulb', opts = { autocmd = { enabled = true } } },
 }
