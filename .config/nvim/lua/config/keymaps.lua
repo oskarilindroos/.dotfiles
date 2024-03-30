@@ -19,6 +19,9 @@ vim.keymap.set('n', '<leader>|', ':vsplit<CR>', { desc = 'Vertical split' })
 -- Dark/light background toggle
 vim.keymap.set('n', '<leader>ub', ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { desc = 'Toggle dark/light mode' })
 
+-- Linewrapping toggle
+vim.keymap.set('n', '<leader>uw', ':set wrap!<CR>', { desc = 'Toggle line wrapping' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
