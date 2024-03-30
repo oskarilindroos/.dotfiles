@@ -59,6 +59,26 @@ return {
       symbol = '│',
       options = { try_as_border = true },
     },
+    init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+          'lazyterm',
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
   },
 
   -- File browser
@@ -138,7 +158,7 @@ return {
       require('which-key').register {
         ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[b]uffer', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[d]iagnostics', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
@@ -154,10 +174,10 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = { 'TroubleToggle', 'Trouble' },
     keys = {
-      { '<leader>cx', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
-      { '<leader>cX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
-      { '<leader>cL', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
-      { '<leader>cQ', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
+      { '<leader>dd', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
+      { '<leader>dw', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
+      { '<leader>dl', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>dq', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
     },
     opts = {},
   },
@@ -179,6 +199,23 @@ return {
         local virtual_lines_enabled = not vim.diagnostic.config().virtual_lines
         vim.diagnostic.config { virtual_lines = virtual_lines_enabled, virtual_text = not virtual_lines_enabled }
       end, { desc = 'Toggle diagnostics vline/text' })
+    end,
+  },
+
+  -- Show colors in the editor
+  {
+    'rrethy/vim-hexokinase',
+    config = function()
+      vim.g.Hexokinase_highlighters = { 'virtual' }
+      vim.g.Hexokinase_optInPatterns = {
+        'full_hex',
+        'triple_hex',
+        'rgb',
+        'rgba',
+        'hsl',
+        'hsla',
+        'color_names',
+      }
     end,
   },
 
