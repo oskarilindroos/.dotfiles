@@ -33,6 +33,7 @@ return {
       -- Adds other completion capabilities.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'roobert/tailwindcss-colorizer-cmp.nvim',
     },
     config = function()
       local cmp = require 'cmp'
@@ -46,6 +47,9 @@ return {
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
+        formatting = {
+          format = require('tailwindcss-colorizer-cmp').formatter,
+        },
 
         -- Bordered
         window = {
@@ -88,6 +92,16 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
         },
+      }
+    end,
+  },
+
+  -- Show tailwind colors in cmp completion menu
+  {
+    'roobert/tailwindcss-colorizer-cmp.nvim',
+    config = function()
+      require('tailwindcss-colorizer-cmp').setup {
+        color_square_width = 2,
       }
     end,
   },
