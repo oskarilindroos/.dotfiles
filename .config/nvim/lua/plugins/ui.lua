@@ -54,32 +54,30 @@ return {
 
   --  Indentation lines
   {
-    'echasnovski/mini.indentscope',
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
     opts = {
-      symbol = '│',
-      options = { try_as_border = true },
+      indent = {
+        char = ' ',
+      },
+      scope = {
+        char = '▍',
+      },
     },
-    init = function()
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = {
-          'help',
-          'alpha',
-          'dashboard',
-          'neo-tree',
-          'Trouble',
-          'trouble',
-          'lazy',
-          'mason',
-          'notify',
-          'toggleterm',
-          'lazyterm',
-        },
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
-    end,
   },
+
+  -- Highlight active window
+  -- {
+  --   'nvim-zh/colorful-winsep.nvim',
+  --   config = true,
+  --   event = { 'WinNew' },
+  --   -- opts = {
+  --   --   hi = {
+  --   --     bg = '#16161E',
+  --   --     fg = '#000000',
+  --   --   },
+  --   -- },
+  -- },
 
   -- File browser
   {
