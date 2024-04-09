@@ -1,7 +1,9 @@
 local wezterm = require("wezterm")
 local config = {}
 
+-- Font settings
 config.font = wezterm.font("GeistMono Nerd Font")
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.font_size = 14.0
 config.color_scheme = "Bitmute"
 
