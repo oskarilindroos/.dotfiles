@@ -10,13 +10,13 @@ config.font_size = 14.0
 config.color_scheme = "Bitmute"
 -- config.color_scheme = "Alabaster"
 
+-- Window settings
 config.hide_tab_bar_if_only_one_tab = true
-
 config.window_padding = {
-	left = 8,
-	right = 8,
-	top = 8,
-	bottom = 8,
+	left = 30,
+	right = 30,
+	top = 20,
+	bottom = 10,
 }
 
 config.keys = {
