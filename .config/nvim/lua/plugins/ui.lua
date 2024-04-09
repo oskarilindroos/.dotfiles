@@ -81,15 +81,29 @@ return {
 
   -- File browser
   {
-    'echasnovski/mini.files',
-    opts = {
-      windows = {
-        preview = true,
-        width_focus = 30,
-        width_preview = 30,
-      },
+    'stevearc/oil.nvim',
+    opts = {},
+    lazy = false,
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      vim.keymap.set('n', '<leader>f', '<cmd>Oil<cr>', { desc = 'File explorer' })
+      require('oil').setup {
+        default_file_explorer = true,
+        view_options = {
+          show_hidden = true,
+        },
+      }
+    end,
+  },
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
     },
-    vim.keymap.set('n', '<leader>f', ':lua MiniFiles.open()<CR>', { desc = 'File explorer' }),
   },
 
   -- Statusline
