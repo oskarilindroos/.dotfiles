@@ -19,11 +19,30 @@ config.window_padding = {
 	bottom = 10,
 }
 
+-- Key bindings
 config.keys = {
 	{
 		key = "r",
 		mods = "CMD|SHIFT",
 		action = wezterm.action.ReloadConfiguration,
+	},
+}
+
+-- Mouse bindings
+config.mouse_bindings = {
+	-- Change the default click behavior so that it only selects
+	-- text and doesn't open hyperlinks
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "NONE",
+		action = wezterm.action.CompleteSelection("ClipboardAndPrimarySelection"),
+	},
+
+	-- and make CTRL-Click open hyperlinks
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CTRL",
+		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 }
 
