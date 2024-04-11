@@ -11,44 +11,20 @@ return {
 
   -- Startup screen
   {
-    'echasnovski/mini.starter',
-    opts = function()
-      local logo = table.concat({
-        '            ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z',
-        '            ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    ',
-        '            ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       ',
-        '            ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z         ',
-        '            ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║           ',
-        '            ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝           ',
-      }, '\n')
-
-      local pad = string.rep(' ', 22)
-      local new_section = function(name, action, section)
-        return { name = name, action = action, section = pad .. section }
-      end
-
-      local starter = require 'mini.starter'
-      --stylua: ignore
-      local config = {
-        evaluate_single = true,
-        header = logo,
-        items = {
-          new_section("Find file",       "Telescope find_files",                                   "Telescope"),
-          new_section("Recent files",    "Telescope oldfiles",                                     "Telescope"),
-          new_section("Grep text",       "Telescope live_grep",                                    "Telescope"),
-          new_section("Config",          "Telescope find_files { cwd = vim.fn.stdpath 'config' }", "Config"),
-          new_section("Lazy",            "Lazy",                                                   "Config"),
-          new_section("New file",        "ene | startinsert",                                      "Built-in"),
-          new_section("Quit",            "qa",                                                     "Built-in"),
-          new_section("Session restore", [[lua require("persistence").load()]],                    "Session"),
-        },
-        footer = nil,
-        content_hooks = {
-          starter.gen_hook.adding_bullet(pad .. "░ ", false),
-          starter.gen_hook.aligning("center", "center"),
-        },
+    'goolord/alpha-nvim',
+    config = function()
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+      dashboard.section.buttons.val = {
+        dashboard.button('e', '> New file', ':ene <BAR><CR>'),
+        dashboard.button('f', '> Find file', ':Telescope find_files<CR>'),
+        dashboard.button('g', '> Grep', ':Telescope live_grep<CR>'),
+        dashboard.button('r', '> Recent', ':Telescope oldfiles<CR>'),
+        dashboard.button('p', '> Plugins', ':Lazy<CR>'),
+        dashboard.button('s', '> Session restore', ':lua require("persistence").load()<CR>'),
+        dashboard.button('q', '> Quit', ':qa<CR>'),
       }
-      return config
+      alpha.setup(dashboard.opts)
     end,
   },
 
@@ -65,19 +41,6 @@ return {
       },
     },
   },
-
-  -- Highlight active window
-  -- {
-  --   'nvim-zh/colorful-winsep.nvim',
-  --   config = true,
-  --   event = { 'WinNew' },
-  --   -- opts = {
-  --   --   hi = {
-  --   --     bg = '#16161E',
-  --   --     fg = '#000000',
-  --   --   },
-  --   -- },
-  -- },
 
   -- File browser
   {
