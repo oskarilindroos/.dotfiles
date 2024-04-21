@@ -88,7 +88,13 @@ return {
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v'
+        local function calculateLocationPercentage()
+          local current_line = vim.fn.line '.'
+          local total_lines = vim.fn.line '$'
+          return math.floor((current_line / total_lines) * 100)
+        end
+
+        return string.format('%d:%d %d%%%%', vim.fn.line '.', vim.fn.col '.', calculateLocationPercentage())
       end
 
       -- ... and there is more!
@@ -180,6 +186,7 @@ return {
   -- Show colors in the editor
   {
     'rrethy/vim-hexokinase',
+    run = 'make hexokinase',
     config = function()
       vim.g.Hexokinase_highlighters = { 'virtual' }
       vim.g.Hexokinase_optInPatterns = {
