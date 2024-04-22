@@ -8,6 +8,10 @@ config.font_size = 14.0
 
 -- Window settings
 config.hide_tab_bar_if_only_one_tab = true
+config.initial_cols = 140
+config.initial_rows = 40
+config.window_decorations = "RESIZE" -- Only show the resize handle
+config.window_close_confirmation = "NeverPrompt"
 config.window_padding = {
 	left = 8,
 	right = 8,
@@ -15,11 +19,11 @@ config.window_padding = {
 	bottom = 0,
 }
 
--- Color scheme (default is light theme)
+-- Color scheme (default)
 config.color_scheme = "neobones_light"
 
 -- Event handler for toggling the colorscheme between light and dark
-wezterm.on("toggle-colorscheme", function(window, pane)
+wezterm.on("toggle-colorscheme", function(window, _)
 	local overrides = window:get_config_overrides() or {}
 	if not overrides.color_scheme then
 		-- Override the color scheme with Bitmute (dark theme)
@@ -33,12 +37,12 @@ end)
 -- Key bindings
 config.keys = {
 	{ -- Reload the configuration
-		key = "r",
-		mods = "CMD|SHIFT",
+		key = "R",
+		mods = "CTRL",
 		action = wezterm.action.ReloadConfiguration,
 	},
 	{ -- Toggle the colorscheme
-		key = "E",
+		key = "B",
 		mods = "CTRL",
 		action = wezterm.action.EmitEvent("toggle-colorscheme"),
 	},
@@ -47,23 +51,10 @@ config.keys = {
 		mods = "CTRL",
 		action = wezterm.action.SendKey({ key = "w", mods = "CTRL" }),
 	},
-}
-
--- Mouse bindings
-config.mouse_bindings = {
-	-- Change the default click behavior so that it only selects
-	-- text and doesn't open hyperlinks
-	{
-		event = { Up = { streak = 1, button = "Left" } },
-		mods = "NONE",
-		action = wezterm.action.CompleteSelection("ClipboardAndPrimarySelection"),
-	},
-
-	-- and make CTRL-Click open hyperlinks
-	{
-		event = { Up = { streak = 1, button = "Left" } },
+	{ -- Toggle fullscreen
+		key = "F",
 		mods = "CTRL",
-		action = wezterm.action.OpenLinkAtMouseCursor,
+		action = wezterm.action.ToggleFullScreen,
 	},
 }
 
