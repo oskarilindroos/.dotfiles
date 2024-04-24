@@ -8,9 +8,9 @@ config.font_size = 14.0
 
 -- Window settings
 config.hide_tab_bar_if_only_one_tab = true
-config.initial_cols = 140
-config.initial_rows = 40
-config.window_decorations = "RESIZE" -- Only show the resize handle
+-- config.initial_cols = 140
+-- config.initial_rows = 40
+-- config.window_decorations = "RESIZE" -- Only show the resize handle
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = {
 	left = 8,
