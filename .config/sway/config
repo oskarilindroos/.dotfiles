@@ -7,7 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod1
+set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -28,11 +28,9 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
+  output DP-1 resolution 1920x1080@144Hz position 3840,0
+  output 'Sony SONY TV  *30 0x01010101' disable
+  output 'Samsung Electric Company LF24T450F HK2T502133' resolution 1920x1080@60Hz position 5760,0 transform 270
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
@@ -51,14 +49,14 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 ### Input configuration
 
 # Laptop Touchpad configuration
-input "1267:228:Elan_Touchpad" {
+input type:touchpad {
 	dwt enabled
 	tap enabled
 	natural_scroll enabled
 	middle_emulation enabled
 }
 
-# EurKey layout for all keyboards
+# Use EurKey layout on all keyboards
 input type:keyboard {
 	xkb_layout eu
 }
@@ -129,6 +127,7 @@ input type:keyboard {
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -140,14 +139,24 @@ input type:keyboard {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    assign [app_id="firefox"] 2
-    assign [app_id="discord"] 4
-    assign [app_id="spotify"] 4
-    assign [app_id="slack"] 4
-    assign [app_id="zoom"] 4
-    assign [app_id="teams"] 4
-    assign [app_id="keepassxc"] 4
+
+    # Assign apps to workspaces
+    assign [app_id="firefox"] 6
+    assign [app_id="keepassxc"] 8
+
+    set $disp1 "DP-1"
+    set $disp2 "HDMI-A-2"
+
+    workspace 1 output $disp1
+    workspace 2 output $disp1
+    workspace 3 output $disp1
+    workspace 4 output $disp1
+    workspace 5 output $disp1
+
+    workspace 6 output $disp2
+    workspace 7 output $disp2
+    workspace 8 output $disp2
+    workspace 9 output $disp2
 #
 # Layout stuff:
 #
@@ -211,19 +220,21 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #colors
-set $accent #444444
+set $lightGrey #d3d3d3
+set $darkGrey #9c9c9c
+set $black #000000
 set $white #ffffff
-set $dark #000000
+set $orange #FF5733 
 
-client.focused #444444 #444444 #ffffff #444444
-client.unfocused #000000 #000000 #ffffff #000000
+client.focused $orange $orange $orange $orange
+# client.unfocused #000000 #000000 #ffffff #000000
 
 # Status Bar:
 set $wifi $(nmcli radio wifi | sed -e "s/enabled/on/" -e "s/disabled/off/")
 set $volu $(amixer get Master | grep "Right:" | grep -E -o "[[0-9%]+]\s[[A-Za-z]+]")
 set $micr $(amixer get Capture | grep "Right:" | grep -E -o "[[A-Za-z]+]")
 set $batt $(cat /sys/class/power_supply/BAT0/capacity)
-set $date $(date +"%a %F %H:%M")
+set $date $(date +"%a %d.%m.%Y %H:%M:%S")
 set $status /// vol: [$volu] /// bat: [$batt%] /// $date
 
 titlebar_border_thickness 1
@@ -235,22 +246,21 @@ bar {
     position top
     mode hide
     hidden_state hide
-    modifier Mod1
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-	status_command while echo $status; do sleep 1; done
+    modifier Mod4
+
+    status_command while echo $status; do sleep 1; done
 
 colors {
-        statusline $white
-        background $dark
+        statusline $black
+        background $lightGrey
         
-        focused_workspace  $accent $accent $white
-        active_workspace   #1e1e1e $white $accent
-        inactive_workspace $dark $dark $white
+        focused_workspace  $black $black $white
+        active_workspace   $darkGrey $darkGrey $black
+        inactive_workspace $darkGrey $darkGrey $black
     }
 }
 
 # Hide the mouse cursor while using keyboard
 seat * hide_cursor when-typing enable
 
-# include @sysconfdir@/sway/config.d/*
+include @sysconfdir@/sway/config.d/*
