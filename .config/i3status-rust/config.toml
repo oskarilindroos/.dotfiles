@@ -8,9 +8,9 @@ idle_fg = "#000000"
 
 [icons]
 icons = "awesome4"
-[icons.overrides]
-bat = ["|E|", "|_|", "|=|", "|F|"]
-bat_charging = "|^| "
+# [icons.overrides]
+# bat = ["|E|", "|_|", "|=|", "|F|"]
+# bat_charging = "|^| "
 
 [[block]]
 block = "focused_window"
