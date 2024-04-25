@@ -121,29 +121,40 @@ bindsym {
 #
 # Workspaces:
 #
+    set $ws1 "q"
+    set $ws2 "w"
+    set $ws3 "e"
+    set $ws4 "r"
+    set $ws5 "t"
+    set $ws6 "y"
+    set $ws7 "u"
+    set $ws8 "i"
+    set $ws9 "o"
+    set $ws10 "p"
+
     # Switch to workspace
-    bindsym $mod+q workspace number 1
-    bindsym $mod+w workspace number 2
-    bindsym $mod+e workspace number 3
-    bindsym $mod+r workspace number 4
-    bindsym $mod+t workspace number 5
-    bindsym $mod+y workspace number 6
-    bindsym $mod+u workspace number 7
-    bindsym $mod+i workspace number 8
-    bindsym $mod+o workspace number 9
-    bindsym $mod+p workspace number 10
+    bindsym $mod+q workspace $ws1 
+    bindsym $mod+w workspace $ws2 
+    bindsym $mod+e workspace $ws3 
+    bindsym $mod+r workspace $ws4 
+    bindsym $mod+t workspace $ws5 
+    bindsym $mod+y workspace $ws6 
+    bindsym $mod+u workspace $ws7 
+    bindsym $mod+i workspace $ws8 
+    bindsym $mod+o workspace $ws9 
+    bindsym $mod+p workspace $ws10
 
     # Move focused container to workspace and switch to workspace
-    bindsym $mod+Shift+q move container to workspace number 1; workspace number 1
-    bindsym $mod+Shift+w move container to workspace number 2; workspace number 2
-    bindsym $mod+Shift+e move container to workspace number 3; workspace number 3
-    bindsym $mod+Shift+r move container to workspace number 4; workspace number 4
-    bindsym $mod+Shift+t move container to workspace number 5; workspace number 5
-    bindsym $mod+Shift+y move container to workspace number 6; workspace number 6
-    bindsym $mod+Shift+u move container to workspace number 7; workspace number 7
-    bindsym $mod+Shift+i move container to workspace number 8; workspace number 8
-    bindsym $mod+Shift+o move container to workspace number 9; workspace number 9
-    bindsym $mod+Shift+p move container to workspace number 10; workspace number 10
+    bindsym $mod+Shift+q move container to workspace $ws1; workspace $ws1
+    bindsym $mod+Shift+w move container to workspace $ws2; workspace $ws2
+    bindsym $mod+Shift+e move container to workspace $ws3; workspace $ws3
+    bindsym $mod+Shift+r move container to workspace $ws4; workspace $ws4
+    bindsym $mod+Shift+t move container to workspace $ws5; workspace $ws5
+    bindsym $mod+Shift+y move container to workspace $ws6; workspace $ws6
+    bindsym $mod+Shift+u move container to workspace $ws7; workspace $ws7
+    bindsym $mod+Shift+i move container to workspace $ws8; workspace $ws8
+    bindsym $mod+Shift+o move container to workspace $ws9; workspace $ws9
+    bindsym $mod+Shift+p move container to workspace $ws10; workspace $ws10
 
     # Assign apps to workspaces
     assign [app_id="keepassxc"] 8
@@ -152,26 +163,27 @@ bindsym {
     set $disp1 "DP-1"
     set $disp2 "HDMI-A-2"
 
-    workspace 1 output $disp1
-    workspace 2 output $disp1
-    workspace 3 output $disp1
-    workspace 4 output $disp1
-    workspace 5 output $disp1
+    workspace $ws1  output $disp1
+    workspace $ws2  output $disp1
+    workspace $ws3  output $disp1
+    workspace $ws4  output $disp1
+    workspace $ws5  output $disp1
 
-    workspace 6 output $disp2
-    workspace 7 output $disp2
-    workspace 8 output $disp2
-    workspace 9 output $disp2
+    workspace $ws6  output $disp2 $disp1
+    workspace $ws7  output $disp2 $disp1
+    workspace $ws8  output $disp2 $disp1
+    workspace $ws9  output $disp2 $disp1
+    workspace $ws10 output $disp2 $disp1
 
 #
 # Startup applications:
 #
-    workspace 7
+    workspace $ws1
     exec $term -e btop
     exec firefox
     exec keepassxc
-    workspace 7
-    workspace 1
+    workspace $ws7
+    workspace $ws1
     exec $term -e tmux
 
 #
