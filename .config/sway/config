@@ -2,13 +2,19 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod1
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term wezterm
+
+# Autotiling script
+exec_always autotiling
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -19,18 +25,18 @@ set $rofi_cmd rofi \
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 ### Output configuration
-#
-  output * bg ~/Pictures/wallpaper.png fit '#ffffff'
-  output DP-1 resolution 1920x1080@144Hz position 3840,0
-  output 'Sony SONY TV  *30 0x01010101' disable scale 2
-  output 'Samsung Electric Company LF24T450F HK2T502133' resolution 1920x1080@60Hz position 5760,0 transform 270
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+output * bg ~/Pictures/wallpaper.png fit '#ffffff'
+
+# Desktop monitors
+output DP-1 resolution 1920x1080@144.001Hz position 3840,0
+output 'Sony SONY TV  *30 0x01010101' scale 2 position 1920,0 resolution 3840x2160@60Hz
+output 'Samsung Electric Company LF24T450F HK2T502133' resolution 1920x1080@74.973Hz position 5760,0 transform 270
 
 ### Input configuration
-# Laptop Touchpad configuration
+# Touchpad configuration
 input type:touchpad {
 	dwt enabled
-        scroll_factor 0.6
+        scroll_factor 0.2
 	tap enabled
         drag enabled
         accel_profile adaptive
@@ -40,8 +46,11 @@ input type:touchpad {
         scroll_method two_finger
 }
 
+# Mouse configuration
 input type:mouse {
-        scroll_factor 0.6
+        scroll_factor 0.2
+        pointer_accel 0.1
+        accel_profile adaptive
 }
 
 # Use EurKey layout on all keyboards
@@ -80,208 +89,204 @@ for_window {
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
-#
-# Basics:
-#
-    # Start a terminal
-    bindsym $mod+Return exec $term
+# Start a terminal
+bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+d kill
+# Kill focused window
+bindsym $mod+Shift+d kill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
+# Start your launcher
+bindsym $mod+d exec $menu
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
+# Reload the configuration file
+bindsym $mod+Shift+c reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Ctrl+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
-# Moving around:
-#
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    # bindsym $mod+Left focus left
-    # bindsym $mod+Down focus down
-    # bindsym $mod+Up focus up
-    # bindsym $mod+Right focus right
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Ctrl+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
-#
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
 # Workspaces:
-#
-    set $ws1 "1:q"
-    set $ws2 "2:w"
-    set $ws3 "3:e"
-    set $ws4 "4:r"
-    set $ws5 "5:t"
-    set $ws6 "6:y"
-    set $ws7 "7:u"
-    set $ws8 "8:i"
-    set $ws9 "9:o"
-    set $ws10 "10:p"
+set $ws1 "1:q"
+set $ws2 "2:w"
+set $ws3 "3:e"
+set $ws4 "4:r"
+set $ws5 "5:t"
 
-    # Switch to workspace
-    bindsym $mod+q workspace $ws1 
-    bindsym $mod+w workspace $ws2 
-    bindsym $mod+e workspace $ws3 
-    bindsym $mod+r workspace $ws4 
-    bindsym $mod+t workspace $ws5 
-    bindsym $mod+y workspace $ws6 
-    bindsym $mod+u workspace $ws7 
-    bindsym $mod+i workspace $ws8 
-    bindsym $mod+o workspace $ws9 
-    bindsym $mod+p workspace $ws10
+set $ws6 "6:y"
+set $ws7 "7:u"
+set $ws8 "8:i"
+set $ws9 "9:o"
+set $ws10 "10:p"
 
-    # Move focused container to workspace and switch to workspace
-    bindsym $mod+Shift+q move container to workspace $ws1; workspace $ws1
-    bindsym $mod+Shift+w move container to workspace $ws2; workspace $ws2
-    bindsym $mod+Shift+e move container to workspace $ws3; workspace $ws3
-    bindsym $mod+Shift+r move container to workspace $ws4; workspace $ws4
-    bindsym $mod+Shift+t move container to workspace $ws5; workspace $ws5
-    bindsym $mod+Shift+y move container to workspace $ws6; workspace $ws6
-    bindsym $mod+Shift+u move container to workspace $ws7; workspace $ws7
-    bindsym $mod+Shift+i move container to workspace $ws8; workspace $ws8
-    bindsym $mod+Shift+o move container to workspace $ws9; workspace $ws9
-    bindsym $mod+Shift+p move container to workspace $ws10; workspace $ws10
+set $ws11 "1"
+set $ws12 "2"
+set $ws13 "3"
+set $ws14 "4"
+set $ws15 "5"
 
-    # Assign workspaces to displays
-    set $disp1 "DP-1"
-    set $disp2 "HDMI-A-2"
+# Switch to workspace
+bindsym $mod+q workspace $ws1 
+bindsym $mod+w workspace $ws2 
+bindsym $mod+e workspace $ws3 
+bindsym $mod+r workspace $ws4 
+bindsym $mod+t workspace $ws5 
 
-    workspace $ws1  output $disp1
-    workspace $ws2  output $disp1
-    workspace $ws3  output $disp1
-    workspace $ws4  output $disp1
-    workspace $ws5  output $disp1
+bindsym $mod+y workspace $ws6 
+bindsym $mod+u workspace $ws7 
+bindsym $mod+i workspace $ws8 
+bindsym $mod+o workspace $ws9 
+bindsym $mod+p workspace $ws10
 
-    workspace $ws6  output $disp2 $disp1
-    workspace $ws7  output $disp2 $disp1
-    workspace $ws8  output $disp2 $disp1
-    workspace $ws9  output $disp2 $disp1
-    workspace $ws10 output $disp2 $disp1
+bindsym $mod+1 workspace $ws11
+bindsym $mod+2 workspace $ws12
+bindsym $mod+3 workspace $ws13
+bindsym $mod+4 workspace $ws14
+bindsym $mod+5 workspace $ws15
 
+# Move focused container to workspace and switch to workspace
+bindsym $mod+Shift+q move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+w move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+e move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+r move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+t move container to workspace $ws5; workspace $ws5
+
+bindsym $mod+Shift+y move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+u move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+i move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+o move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+p move container to workspace $ws10; workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws11; workspace $ws11
+bindsym $mod+Shift+2 move container to workspace $ws12; workspace $ws12
+bindsym $mod+Shift+3 move container to workspace $ws13; workspace $ws13
+bindsym $mod+Shift+4 move container to workspace $ws14; workspace $ws14
+bindsym $mod+Shift+5 move container to workspace $ws15; workspace $ws15
+
+# Assign workspaces to displays
+set $disp1 "DP-1"
+set $disp2 "HDMI-A-2"
+set $disp3 "Sony SONY TV  *30 0x01010101"
+
+workspace $ws1  output $disp1
+workspace $ws2  output $disp1
+workspace $ws3  output $disp1
+workspace $ws4  output $disp1
+workspace $ws5  output $disp1
+
+workspace $ws6  output $disp2 $disp1
+workspace $ws7  output $disp2 $disp1
+workspace $ws8  output $disp2 $disp1
+workspace $ws9  output $disp2 $disp1
+workspace $ws10 output $disp2 $disp1
+
+workspace $ws11 output $disp3 $disp1
+workspace $ws12 output $disp3 $disp1
+workspace $ws13 output $disp3 $disp1
+workspace $ws14 output $disp3 $disp1
+workspace $ws15 output $disp3 $disp1
 #
 # Startup applications:
 #
-    # workspace $ws1
-    # exec $term -e tmux
-    # workspace $ws7
-    # exec $term -e btop
-    # workspace $ws8
-    # exec keepassxc
-    # workspace $ws7
-    # workspace $ws1
+# workspace $ws1
+# exec $term -e tmux
+# workspace $ws7
+# exec $term -e btop
+# workspace $ws8
+# exec keepassxc
+# workspace $ws7
+# workspace $ws1
 
-#
 # Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+c layout stacking
-    bindsym $mod+x layout tabbed
-    bindsym $mod+z layout toggle split
+# Switch the current container between different layout styles
+bindsym $mod+c layout stacking
+bindsym $mod+x layout tabbed
+bindsym $mod+z layout toggle split
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
+# Move focus to the parent container
+bindsym $mod+a focus parent
 #
 # Scratchpad:
 #
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
-# mode "resize" {
-#     # left will shrink the containers width
-#     # right will grow the containers width
-#     # up will shrink the containers height
-#     # down will grow the containers height
-#     bindsym $left resize shrink width 20px
-#     bindsym $down resize grow height 20px
-#     bindsym $up resize shrink height 20px
-#     bindsym $right resize grow width 20px
-#
-#     # Ditto, with arrow keys
-#     bindsym Left resize shrink width 20px
-#     bindsym Down resize grow height 20px
-#     bindsym Up resize shrink height 20px
-#     bindsym Right resize grow width 20px
-#
-#     # Return to default mode
-#     bindsym Return mode "default"
-#     bindsym Escape mode "default"
-# }
-# bindsym $mod+shift+r mode "resize"
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# Resizing 
 bindsym $mod+Left resize shrink width 30px
 bindsym $mod+Down resize grow height  30px
 bindsym $mod+Up resize shrink height  30px
 bindsym $mod+Right resize grow width  30px
 
-#colors
+# Colors
 set $lightGrey #d3d3d3
 set $darkGrey #9c9c9c
 set $black #000000
 set $white #ffffff
 set $orange #FF5733 
 
-# client.focused $orange $orange $orange $orange
-# client.unfocused #000000 #000000 #ffffff #000000
-
-# Status Bar:
-set $wifi $(nmcli radio wifi | sed -e "s/enabled/on/" -e "s/disabled/off/")
-set $volu $(amixer get Master | grep "Right:" | grep -E -o "[[0-9%]+]\s[[A-Za-z]+]")
-set $micr $(amixer get Capture | grep "Right:" | grep -E -o "[[A-Za-z]+]")
-set $batt $(cat /sys/class/power_supply/BAT0/capacity)
-set $date $(date +"%a %d.%m.%Y %H:%M:%S")
-set $status vol: [$volu] bat: [$batt%] $date
-
+client.focused #000000 #000000 #ffffff #000000
+client.unfocused #d3d3d3 #d3d3d3 #000000 #d3d3d3
 titlebar_border_thickness 1
 titlebar_padding 1
 font pango:monospace 12
-default_border pixel 4
+default_border pixel 2
+
+# Status Bar:
+# set $wifi $(nmcli radio wifi | sed -e "s/enabled/on/" -e "s/disabled/off/")
+# set $volu $(amixer get Master | grep "Right:" | grep -E -o "[[0-9%]+]\s[[A-Za-z]+]")
+# set $micr $(amixer get Capture | grep "Right:" | grep -E -o "[[A-Za-z]+]")
+# set $batt $(cat /sys/class/power_supply/BAT0/capacity)
+# set $date $(date +"%a %d.%m.%Y %H:%M:%S")
+# set $status vol: [$volu] bat: [$batt%] $date
 
 bar {
     position top
@@ -290,17 +295,17 @@ bar {
     # modifier $mod
     strip_workspace_numbers yes
 
-    status_command while echo $status; do sleep 1; done
-    # status_command /bin/i3status-rs ~/.config/i3status-rust/config.toml
+    # status_command while echo $status; do sleep 1; done
+    status_command while ~/.config/sway/swaybar.sh; do sleep 1; done
 
-colors {
-        statusline $black
-        background $lightGrey
-        
-        focused_workspace  $black $black $white
-        active_workspace   $darkGrey $darkGrey $black
-        inactive_workspace $lightGrey $lightGrey $black
-    }
+    colors {
+            statusline $black
+            background $lightGrey
+            
+            focused_workspace  $black $black $white
+            active_workspace   $darkGrey $darkGrey $black
+            inactive_workspace $lightGrey $lightGrey $black
+        }
 }
 
 # Hide the mouse cursor while using keyboard
