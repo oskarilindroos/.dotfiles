@@ -115,4 +115,4 @@ fi
 eval "$(starship init bash)"
 
 # Enable z (jump around directories)
-. ~/.dotfiles/scripts/z.sh
+. ~/.scripts/z.sh
