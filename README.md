@@ -17,6 +17,7 @@ This repository contains my personal dotfiles. The dotfiles are managed using GN
 | stow            | Symlink farm manager  |
 | sway            | Tiling window manager |
 | sway-screenshot | Screenshot tool       |
+| autotiling      | Autotiling script     |
 | rofi            | Application launcher  |
 
 ## Screenshot
