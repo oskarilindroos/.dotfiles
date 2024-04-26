@@ -1,9 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -46,10 +40,13 @@ input type:touchpad {
         scroll_method two_finger
 }
 
+input type:mouse {
+        scroll_factor 0.6
+}
+
 # Use EurKey layout on all keyboards
 input type:keyboard {
 	xkb_layout eu
-
 }
 
 # Media keys
@@ -64,6 +61,17 @@ bindsym {
     XF86AudioPause      exec playerctl pause
     XF86AudioPrev       exec playerctl previous
     XF86AudioRewind     exec playerctl position -10
+
+    # Screenshot with sway-screenshot
+    Mod4+Shift+s        exec sway-screenshot -m region -o ~/Pictures/Screenshots
+}
+
+# Window rules
+for_window {
+    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+    [title="Picture-in-Picture"]  floating enable
+    [window_role="pop-up"] floating enable
+    [window_role="About"] floating enable
 }
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
