@@ -184,22 +184,22 @@ return {
   },
 
   -- Show colors in the editor
-  {
-    'rrethy/vim-hexokinase',
-    run = 'make hexokinase',
-    config = function()
-      vim.g.Hexokinase_highlighters = { 'virtual' }
-      vim.g.Hexokinase_optInPatterns = {
-        'full_hex',
-        'triple_hex',
-        'rgb',
-        'rgba',
-        'hsl',
-        'hsla',
-        'color_names',
-      }
-    end,
-  },
+  -- {
+  --   'rrethy/vim-hexokinase',
+  --   run = 'make hexokinase',
+  --   config = function()
+  --     vim.g.Hexokinase_highlighters = { 'virtual' }
+  --     vim.g.Hexokinase_optInPatterns = {
+  --       'full_hex',
+  --       'triple_hex',
+  --       'rgb',
+  --       'rgba',
+  --       'hsl',
+  --       'hsla',
+  --       'color_names',
+  --     }
+  --   end,
+  -- },
 
   -- Show lightbulb when code actions are available
   { 'kosayoda/nvim-lightbulb', opts = { autocmd = { enabled = true } } },

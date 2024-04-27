@@ -72,41 +72,41 @@ return {
 
       return {
         -- Harpoon marked files 1 through 4
-        {
-          '<F1>',
-          function()
-            harpoon:list():select(1)
-          end,
-          desc = 'Harpoon buffer 1',
-        },
-        {
-          '<F2>',
-          function()
-            harpoon:list():select(2)
-          end,
-          desc = 'Harpoon buffer 2',
-        },
-        {
-          '<F3>',
-          function()
-            harpoon:list():select(3)
-          end,
-          desc = 'Harpoon buffer 3',
-        },
-        {
-          '<F4>',
-          function()
-            harpoon:list():select(4)
-          end,
-          desc = 'Harpoon buffer 4',
-        },
-        {
-          '<F5>',
-          function()
-            harpoon:list():select(5)
-          end,
-          desc = 'Harpoon buffer 5',
-        },
+        -- {
+        --   '<F1>',
+        --   function()
+        --     harpoon:list():select(1)
+        --   end,
+        --   desc = 'Harpoon buffer 1',
+        -- },
+        -- {
+        --   '<F2>',
+        --   function()
+        --     harpoon:list():select(2)
+        --   end,
+        --   desc = 'Harpoon buffer 2',
+        -- },
+        -- {
+        --   '<F3>',
+        --   function()
+        --     harpoon:list():select(3)
+        --   end,
+        --   desc = 'Harpoon buffer 3',
+        -- },
+        -- {
+        --   '<F4>',
+        --   function()
+        --     harpoon:list():select(4)
+        --   end,
+        --   desc = 'Harpoon buffer 4',
+        -- },
+        -- {
+        --   '<F5>',
+        --   function()
+        --     harpoon:list():select(5)
+        --   end,
+        --   desc = 'Harpoon buffer 5',
+        -- },
 
         -- Harpoon next and previous.
         {
@@ -166,46 +166,46 @@ return {
     config = function(_, opts)
       local harpoon = require('harpoon').setup(opts)
 
-      local function set_harpoon_colors()
-        vim.cmd 'highlight link HarpoonNumberActive Special'
-        vim.cmd 'highlight link HarpoonActive Special'
-        vim.cmd 'highlight link HarpoonNumberInactive Comment'
-        vim.cmd 'highlight link HarpoonInactive Comment'
-      end
-
-      set_harpoon_colors()
-
-      function Harpoon_files()
-        local contents = {}
-        local marks_length = harpoon:list():length()
-        local current_file_path = vim.fn.fnamemodify(vim.fn.expand '%:p', ':.')
-        for index = 1, marks_length do
-          local harpoon_file_path = harpoon:list():get(index).value
-          local file_name = harpoon_file_path == '' and '(empty)' or vim.fn.fnamemodify(harpoon_file_path, ':t')
-
-          if current_file_path == harpoon_file_path then
-            contents[index] = string.format('%%#HarpoonNumberActive#[ %s. %%#HarpoonActive#%s ]', index, file_name)
-          else
-            contents[index] = string.format('%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ', index, file_name)
-          end
-        end
-
-        return table.concat(contents)
-      end
+      -- local function set_harpoon_colors()
+      --   vim.cmd 'highlight link HarpoonNumberActive Special'
+      --   vim.cmd 'highlight link HarpoonActive Special'
+      --   vim.cmd 'highlight link HarpoonNumberInactive Comment'
+      --   vim.cmd 'highlight link HarpoonInactive Comment'
+      -- end
+      --
+      -- set_harpoon_colors()
+      --
+      -- function Harpoon_files()
+      --   local contents = {}
+      --   local marks_length = harpoon:list():length()
+      --   local current_file_path = vim.fn.fnamemodify(vim.fn.expand '%:p', ':.')
+      --   for index = 1, marks_length do
+      --     local harpoon_file_path = harpoon:list():get(index).value
+      --     local file_name = harpoon_file_path == '' and '(empty)' or vim.fn.fnamemodify(harpoon_file_path, ':t')
+      --
+      --     if current_file_path == harpoon_file_path then
+      --       contents[index] = string.format('%%#HarpoonNumberActive#[ %s. %%#HarpoonActive#%s ]', index, file_name)
+      --     else
+      --       contents[index] = string.format('%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ', index, file_name)
+      --     end
+      --   end
+      --
+      --   return table.concat(contents)
+      -- end
 
       -- Update colors on theme change or background change
-      vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
-        callback = function()
-          set_harpoon_colors()
-        end,
-      })
-
-      vim.opt.showtabline = 2
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'User' }, {
-        callback = function(ev)
-          vim.o.tabline = Harpoon_files()
-        end,
-      })
+      -- vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+      --   callback = function()
+      --     set_harpoon_colors()
+      --   end,
+      -- })
+      --
+      -- vim.opt.showtabline = 2
+      -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'User' }, {
+      --   callback = function(ev)
+      --     vim.o.tabline = Harpoon_files()
+      --   end,
+      -- })
     end,
 
     -- ----------------------------------------------------------------------- }}}

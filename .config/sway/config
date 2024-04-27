@@ -49,7 +49,7 @@ input type:touchpad {
 # Mouse configuration
 input type:mouse {
         scroll_factor 0.2
-        pointer_accel 0.1
+        pointer_accel 0.5
         accel_profile adaptive
 }
 
@@ -62,6 +62,10 @@ input type:keyboard {
 bindsym --locked {
     XF86AudioPlay       exec playerctl play-pause
     XF86AudioStop       exec playerctl stop
+    XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 }
 
 bindsym {

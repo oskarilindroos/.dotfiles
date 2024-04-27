@@ -27,6 +27,7 @@ return {
         typescript = { { 'prettierd', 'prettier' } },
         go = { { 'gofmt', 'goimports' } },
         sql = { 'sqlfmt' },
+        sh = { 'beautysh' },
       },
     },
   },
