@@ -104,7 +104,27 @@ return {
         tsserver = {}, -- Type/javasript lsp
         tailwindcss = {}, -- Tailwind lsp
         jsonls = {}, -- JSON lsp
-        yamlls = {}, -- Yaml lsp
+        yamlls = {
+          settings = {
+            yaml = {
+              -- schemaStore = {
+              --   -- You must disable built-in schemaStore support if you want to use
+              --   -- this plugin and its advanced options like `ignore`.
+              --   enable = false,
+              --   -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+              --   url = '',
+              -- },
+              -- schemas = require('schemastore').yaml.schemas(),
+              schemas = {
+                ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+                ['https://json.schemastore.org/pre-commit-config.json'] = '/.pre-commit-config.*',
+                ['https://json.schemastore.org/catalog-info.json'] = '.backstage/*.yaml',
+                ['https://raw.githubusercontent.com/iterative/dvcyaml-schema/master/schema.json'] = '**/dvc.yaml',
+                ['https://json.schemastore.org/swagger-2.0.json'] = '**/swagger.yaml',
+              },
+            },
+          },
+        }, -- Yaml lsp
         stylua = {}, -- Lua formatter
         -- sqlfluff = {}, -- SQL Linter
         -- sqlfmt = {}, -- SQL Formatter
@@ -146,6 +166,9 @@ return {
       }
     end,
   },
+
+  -- Schema stores for JSON, YAML
+  -- { 'b0o/schemastore.nvim' },
 
   -- Highlight, edit, and navigate code
   {

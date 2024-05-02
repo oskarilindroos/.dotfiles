@@ -54,6 +54,9 @@ return {
         default_file_explorer = true,
         view_options = {
           show_hidden = true,
+          -- is_always_hidden = function(name, bufnr)
+          --   return name:match '%.git$'
+          -- end,
         },
       }
     end,
@@ -139,7 +142,7 @@ return {
       require('which-key').register {
         ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[b]uffer', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[d]iagnostics', _ = 'which_key_ignore' },
+        ['<leader>x'] = { name = '[x]', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
@@ -155,51 +158,21 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     cmd = { 'TroubleToggle', 'Trouble' },
     keys = {
-      { '<leader>dd', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
-      { '<leader>dw', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
-      { '<leader>dl', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
-      { '<leader>dq', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
+      { '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
+      { '<leader>xl', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>xq', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
     },
     opts = {},
   },
 
-  -- Render diagnostics using virtual lines on top of the real line of code
+  -- Show colors in the editor
   {
-    'https://git.sr.ht/%7Ewhynothugo/lsp_lines.nvim',
+    'norcalli/nvim-colorizer.lua',
     config = function()
-      require('lsp_lines').setup()
-
-      -- Use virtual text by default
-      vim.diagnostic.config {
-        virtual_text = true,
-        virtual_lines = false,
-      }
-
-      -- Keybind to toggle virtual lines and virtual text
-      vim.keymap.set('n', '<leader>e', function()
-        local virtual_lines_enabled = not vim.diagnostic.config().virtual_lines
-        vim.diagnostic.config { virtual_lines = virtual_lines_enabled, virtual_text = not virtual_lines_enabled }
-      end, { desc = 'Toggle diagnostics vline/text' })
+      require('colorizer').setup()
     end,
   },
-
-  -- Show colors in the editor
-  -- {
-  --   'rrethy/vim-hexokinase',
-  --   run = 'make hexokinase',
-  --   config = function()
-  --     vim.g.Hexokinase_highlighters = { 'virtual' }
-  --     vim.g.Hexokinase_optInPatterns = {
-  --       'full_hex',
-  --       'triple_hex',
-  --       'rgb',
-  --       'rgba',
-  --       'hsl',
-  --       'hsla',
-  --       'color_names',
-  --     }
-  --   end,
-  -- },
 
   -- Show lightbulb when code actions are available
   { 'kosayoda/nvim-lightbulb', opts = { autocmd = { enabled = true } } },

@@ -3,7 +3,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/Documents/Personal/ ~/Documents/School/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    # Find all git repos in the home directory and pipe them to fzf for selection
+    selected=$(find ~/ -mindepth 0 -maxdepth 4 -name "*.git" -type d -exec dirname {} \; | fzf --preview 'tree -aC {}' --border)
 fi
 
 if [[ -z $selected ]]; then
