@@ -259,8 +259,8 @@ set $black #000000
 set $white #ffffff
 set $orange #FF5733 
 
-client.focused #d3d3d3 #d3d3d3 #000000 #d3d3d3
-client.unfocused #000000 #000000 #ffffff #000000
+# client.focused blue bluie $white $orange
+# client.unfocused #000000 #000000 #ffffff #000000
 titlebar_border_thickness 1
 font pango:monospace 12
 default_border pixel 2
