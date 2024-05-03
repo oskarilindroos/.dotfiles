@@ -89,32 +89,19 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      -- Enable the following language servers
+      -- These lsps are always installed
       local servers = {
-        clangd = {}, -- C lsp
-        cpptools = {}, -- C++ lsp
-        gopls = {}, -- Golang lsp
-        gofumpt = {},
-        goimports = {},
         dockerls = {}, -- Dockerfile lsp
         docker_compose_language_service = {}, -- Docker compose lsp
         cssls = {}, -- CSS lsp
         prettier = {}, -- Prettier formatter
         prettierd = {}, -- Prettier formatter
-        tsserver = {}, -- Type/javasript lsp
+        -- tsserver = {}, -- Type/javasript lsp
         tailwindcss = {}, -- Tailwind lsp
         jsonls = {}, -- JSON lsp
         yamlls = {
           settings = {
             yaml = {
-              -- schemaStore = {
-              --   -- You must disable built-in schemaStore support if you want to use
-              --   -- this plugin and its advanced options like `ignore`.
-              --   enable = false,
-              --   -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-              --   url = '',
-              -- },
-              -- schemas = require('schemastore').yaml.schemas(),
               schemas = {
                 ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
                 ['https://json.schemastore.org/pre-commit-config.json'] = '/.pre-commit-config.*',
@@ -126,14 +113,9 @@ return {
           },
         }, -- Yaml lsp
         stylua = {}, -- Lua formatter
-        -- sqlfluff = {}, -- SQL Linter
-        -- sqlfmt = {}, -- SQL Formatter
         sqlls = {}, -- SQL LSP
         markdownlint = {}, -- Markdown linter
         lua_ls = { -- Lua LSP
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
           settings = {
             Lua = {
               completion = {
@@ -167,8 +149,12 @@ return {
     end,
   },
 
-  -- Schema stores for JSON, YAML
-  -- { 'b0o/schemastore.nvim' },
+  -- Better typescript support
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
 
   -- Highlight, edit, and navigate code
   {
