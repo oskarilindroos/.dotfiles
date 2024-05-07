@@ -4,11 +4,6 @@ case $- in
       *) return;;
 esac
 
-# Start tmux on startup
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#   exec tmux
-# fi
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -93,6 +88,11 @@ alias l='ls -CF'
 alias vim='nvim'
 alias lg='lazygit'
 
+# Docker aliases
+alias dcs='docker ps | rg -v CONTAINER | fzf --multi --header "Choose one or more docker containers to stop" | awk '\''{print $1}'\'' | xargs -I {} docker stop {}'
+alias dcd='docker ps -a | rg -v CONTAINER | fzf --multi --header "Choose one or more docker containers to delete" | awk '\''{print $1}'\'' | xargs -I {} docker rm {}'
+alias did='docker images | rg -v IMAGE | fzf --multi --header "Choose one or more docker images to delete" | awk '\''{print $3}'\'' | xargs -I {} docker rmi {}'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -112,7 +112,7 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin/.local/scripts:$PATH"
 fi
 
-# Enable fzf
+# fzf 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Enable starship prompt
