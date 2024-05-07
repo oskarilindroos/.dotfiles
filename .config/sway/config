@@ -273,6 +273,9 @@ default_border pixel 2
 # set $date $(date +"%a %d.%m.%Y %H:%M:%S")
 # set $status vol: [$volu] bat: [$batt%] $date
 
+gaps inner 10
+gaps outer 0
+
 bar {
     position top
     # mode hide
