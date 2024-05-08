@@ -1,5 +1,5 @@
 # Date and time
-date_and_week=$(date "+%d.%m.%Y (w%-V)")
+date_and_week=$(date "+%a %d.%m.%Y (w%-V)")
 current_time=$(date "+%H:%M:%S")
 
 # Battery
@@ -45,4 +45,4 @@ else
     media_string=""
 fi
 
-echo "$media_string $audio_volume BL:$bluetooth_state $vpn_status $battery_capacity $date_and_week | $current_time"
+echo "$media_string $audio_volume BL:$bluetooth_state $vpn_status$battery_capacity$date_and_week | $current_time"
