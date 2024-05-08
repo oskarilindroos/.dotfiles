@@ -144,12 +144,16 @@ return {
       require('typescript-tools').setup {
         settings = {
           expose_as_code_action = 'all',
-          jsx_close_tag = {
-            enable = true,
-            filetypes = { 'typescriptreact', 'javascriptreact' },
-          },
         },
       }
+    end,
+  },
+
+  -- Auto close tags
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
     end,
   },
 
