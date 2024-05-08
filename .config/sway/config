@@ -262,7 +262,7 @@ set $orange #FF5733
 # client.focused blue bluie $white $orange
 # client.unfocused #000000 #000000 #ffffff #000000
 titlebar_border_thickness 1
-font pango:monospace 12
+font 'Go Mono' 12
 default_border pixel 2
 
 # Status Bar:
