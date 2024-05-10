@@ -1,14 +1,33 @@
 return {
   {
     'ibhagwan/fzf-lua',
-    -- optional for icon support
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      -- calling `setup` is optional for customization
       require('fzf-lua').setup {
         fzf_opts = {
           ['--layout'] = 'reverse-list',
-          ['--info'] = 'inline',
+        },
+        winopts = {
+          preview = {
+            layout = 'vertical',
+            vertical = 'up',
+          },
+        },
+        grep = {
+          prompt = 'live grep> ',
+          rg_opts = "--hidden --column --line-number --color=always --smart-case -g '!{.git,node_modules}/*'",
+        },
+        lsp_definitions = {
+          jump_to_single_result = true,
+        },
+        lsp_implementations = {
+          jump_to_single_result = true,
+        },
+        lsp_references = {
+          jump_to_single_result = true,
+        },
+        files = {
+          file_ignore_patterns = { '.git/', 'node_modules/' },
         },
         keymap = {
           fzf = {
@@ -18,7 +37,7 @@ return {
       }
 
       vim.keymap.set('n', '<leader>sf', "<cmd>lua require('fzf-lua').files()<CR>", { desc = 'files' })
-      vim.keymap.set('n', '<leader>sg', "<cmd>lua require('fzf-lua').live_grep()<CR>", { desc = 'grep' })
+      vim.keymap.set('n', '<leader>sg', "<cmd>lua require('fzf-lua').live_grep()<CR>", { desc = 'live grep' })
       vim.keymap.set('n', '<leader><leader>', "<cmd>lua require('fzf-lua').buffers()<CR>", { desc = 'buffers' })
       vim.keymap.set('n', '<leader>sh', "<cmd>lua require('fzf-lua').help_tags()<CR>", { desc = 'help tags' })
       vim.keymap.set('n', '<leader>sr', "<cmd>lua require('fzf-lua').resume()<CR>", { desc = 'resume' })
@@ -89,7 +108,7 @@ return {
       -- vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       -- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sm', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       -- vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       -- vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       -- vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
