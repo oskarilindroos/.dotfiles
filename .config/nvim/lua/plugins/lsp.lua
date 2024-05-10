@@ -85,7 +85,6 @@ return {
         prettierd = {}, -- Prettier formatter
         -- tsserver = {}, -- Type/javasript lsp
         tailwindcss = {}, -- Tailwind lsp
-        jsonls = {}, -- JSON lsp
         yamlls = {
           settings = {
             yaml = {
