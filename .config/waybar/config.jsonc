@@ -1,0 +1,177 @@
+{
+  "position": "top",
+  "layer": "top",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["custom/playerlabel", "custom/playerctl"],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "backlight",
+    "bluetooth",
+    "network",
+    "battery",
+    "pulseaudio",
+    "clock",
+    "custom/power",
+  ],
+
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "format-alt": "{:%A, %B %d, %Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": false,
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "q",
+      "2": "w",
+      "3": "e",
+      "4": "r",
+      "5": "t",
+      "6": "y",
+      "7": "u",
+      "8": "i",
+      "9": "o",
+      "10": "p",
+      "11": "1",
+      "12": "2",
+      "13": "3",
+      "14": "4",
+      "15": "5",
+      "sort-by": "number",
+    },
+  },
+
+  "hyprland/window": {
+    "max-length": 48,
+    "separate-outputs": true,
+  },
+
+  "custom/playerlabel": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 48,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "format-icons": {
+      "Playing": "<span>󰐊 </span>",
+      "Paused": "<span>󰏤</span>",
+    },
+  },
+
+  "bluetooth": {
+    // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+    "format": " {status}",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": " ({num_connections})",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+  },
+
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": false,
+    "on-click": "wlogout --protocol layer-shell",
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+  },
+
+  "memory": {
+    "format": "RAM {}%",
+    "format-alt": "RAM {used}/{total} GiB",
+    "interval": 5,
+  },
+
+  "cpu": {
+    "format": "CPU {usage}%",
+    "format-alt": "CPU {avg_frequency} GHz",
+    "interval": 5,
+  },
+
+  "disk": {
+    "format": "Disk {}%",
+    "format-alt": "Disk {used}/{total} GiB",
+    "interval": 5,
+    "path": "/mnt/Datos",
+  },
+
+  "network": {
+    "format-wifi": "󰤨",
+    "format-ethernet": " {ifname}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "󰤭",
+    "format-alt": " {ifname}: {ipaddr}/{cidr}",
+    "tooltip-format": "{essid}",
+    "on-click-right": "nm-connection-editor",
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 5,
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+  },
+
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+  },
+}

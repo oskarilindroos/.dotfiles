@@ -1,0 +1,99 @@
+* {
+  border: none;
+  border-radius: 0px;
+  font-family:
+    Iosevka,
+    FontAwesome,
+    Noto Sans CJK;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+
+window#waybar {
+  background-color: #d3d3d3;
+  border-bottom: solid 1px black;
+}
+
+#workspaces {
+  border: solid 0px black;
+  font-style: normal;
+}
+
+#workspaces button {
+  padding: 0px 4px;
+}
+
+#workspaces button.visible {
+  color: black;
+
+  background-color: #9c9c9c;
+}
+
+#workspaces button.active {
+  color: white;
+  background-color: black;
+}
+
+#workspaces button:hover {
+  color: black;
+}
+
+#workspaces button.urgent {
+  color: black;
+  background-color: red;
+}
+
+#custom-date,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#window,
+#backlight,
+#battery,
+#cpu,
+#bluetooth,
+#memory,
+#disk {
+  border-left: solid 1px black;
+  padding: 0px 12px;
+}
+
+#custom-power {
+  font-size: 20px;
+  padding: 0px 8px;
+  border-radius: 0px 0px 0px 12px;
+  color: white;
+  background-color: black;
+}
+
+#custom-power:hover {
+  background-color: salmon;
+  color: black;
+}
+
+#pulseaudio.muted {
+  color: gray;
+  margin-left: 0px;
+}
+
+#pulseaudio-slider slider {
+  min-height: 20px;
+  min-width: 90px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+  border-radius: 8px;
+  background-color: gray;
+}
+#pulseaudio-slider highlight {
+  min-width: 10px;
+  border-radius: 8px;
+  background-color: black;
+}
