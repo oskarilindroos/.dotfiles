@@ -4,16 +4,38 @@
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["custom/playerlabel", "custom/playerctl"],
   "modules-right": [
-    "cpu",
-    "memory",
     "backlight",
     "bluetooth",
-    "network",
     "battery",
     "pulseaudio",
+    "group/information",
     "clock",
-    "custom/power",
+    "group/power",
   ],
+
+  "group/information": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": true,
+    },
+    "modules": ["network", "cpu", "memory", "custom/weather"],
+  },
+
+  "group/power": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false,
+    },
+    "modules": [
+      "custom/power",
+      "keyboard-state",
+      "custom/togglekeyboard",
+      "battery",
+      "backlight",
+    ],
+  },
 
   "clock": {
     "interval": 1,
@@ -99,10 +121,32 @@
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
   },
 
+  "keyboard-state": {
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": "",
+    },
+  },
+
+  "custom/togglekeyboard": {
+    "format": "toggle",
+    "tooltip": false,
+    "on-click": "",
+  },
+
   "custom/power": {
     "format": "󰐥",
     "tooltip": false,
     "on-click": "wlogout --protocol layer-shell",
+  },
+
+  "custom/weather": {
+    "format": "{}",
+    "interval": 900,
+    "tooltip": false,
+    "exec": "curl -s 'wttr.in/?format=%t'",
   },
 
   "battery": {

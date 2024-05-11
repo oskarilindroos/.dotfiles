@@ -52,9 +52,12 @@ window#waybar {
 #network,
 #window,
 #backlight,
+#custom-weather,
+#custom-togglekeyboard,
 #battery,
 #cpu,
 #bluetooth,
+#keyboard-state,
 #memory,
 #disk {
   border-left: solid 1px black;
