@@ -163,6 +163,10 @@ return {
     opts = {
       -- Autoinstall languages that are not installed
       auto_install = true,
+      ensure_installed = {
+        'markdown',
+        'markdown_inline',
+      },
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
