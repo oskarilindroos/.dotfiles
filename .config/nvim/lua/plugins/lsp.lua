@@ -100,7 +100,6 @@ return {
         }, -- Yaml lsp
         stylua = {}, -- Lua formatter
         sqlls = {}, -- SQL LSP
-        markdownlint = {}, -- Markdown linter
         lua_ls = { -- Lua LSP
           settings = {
             Lua = {
