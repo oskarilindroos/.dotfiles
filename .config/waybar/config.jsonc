@@ -68,6 +68,11 @@
     "active-only": false,
     "all-outputs": false,
     "disable-scroll": false,
+    // "persistent-workspaces": {
+    //   "DP-1": [1],
+    //   "HDMI-A-2": [6],
+    //   "HDMI-A-1": [11],
+    // },
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
     "format": "{icon}",
