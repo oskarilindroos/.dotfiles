@@ -8,6 +8,7 @@
     "bluetooth",
     "battery",
     "pulseaudio",
+    "network#mullvad",
     "group/information",
     "clock",
     "group/power",
@@ -194,6 +195,12 @@
     "format-alt": " {ifname}: {ipaddr}/{cidr}",
     "tooltip-format": "{essid}",
     "on-click-right": "nm-connection-editor",
+  },
+
+  "network#mullvad": {
+    "interface": "wg0-mullvad",
+    "format": "{ifname}",
+    "format-disconnected": "",
   },
 
   "tray": {
