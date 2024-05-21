@@ -9,7 +9,8 @@
     "battery",
     "pulseaudio",
     "network#mullvad",
-    "group/information",
+    "network",
+    "custom/weather",
     "clock",
     "group/power",
   ],
@@ -18,7 +19,7 @@
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 500,
-      "transition-left-to-right": true,
+      "transition-left-to-right": false,
     },
     "modules": ["network", "cpu", "memory", "custom/weather"],
   },
@@ -29,7 +30,13 @@
       "transition-duration": 500,
       "transition-left-to-right": false,
     },
-    "modules": ["custom/power", "keyboard-state", "custom/togglekeyboard"],
+    "modules": [
+      "custom/power",
+      "keyboard-state",
+      "custom/togglekeyboard",
+      "cpu",
+      "memory",
+    ],
   },
 
   "clock": {
@@ -63,11 +70,6 @@
     "active-only": false,
     "all-outputs": false,
     "disable-scroll": false,
-    // "persistent-workspaces": {
-    //   "DP-1": [1],
-    //   "HDMI-A-2": [6],
-    //   "HDMI-A-1": [11],
-    // },
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
     "format": "{icon}",
