@@ -106,40 +106,54 @@ return {
     'shortcuts/no-neck-pain.nvim',
     cmd = 'NoNeckPain',
     keys = { { '<leader>un', '<cmd>NoNeckPain<cr>', desc = 'No Neck Pain' } },
-    config = true,
+    config = function()
+      require('no-neck-pain').setup {}
+    end,
   },
 
-  -- Shows pending keybinds
+  -- Shows keybinds in a popup
   {
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
-        ['<leader>b'] = { name = '[b]uffer', _ = 'which_key_ignore' },
-        ['<leader>x'] = { name = '[x]', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
-        ['<leader>u'] = { name = '[u]i', _ = 'which_key_ignore' },
-      }
-    end,
+    event = 'VeryLazy',
+    opts = {
+      spec = {
+        { '<leader>c', group = 'code' },
+        { '<leader>g', group = 'git' },
+        { '<leader>l', group = 'lsp' },
+        { '<leader>x', group = 'trouble' },
+        { '<leader>u', group = 'ui' },
+        { '<leader>s', group = 'search' },
+      },
+    },
+    keys = {
+      {
+        '<leader>?',
+        function()
+          require('which-key').show { global = false }
+        end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+    },
   },
 
   -- Better diagnostics, quickfix list
   {
     'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    cmd = { 'TroubleToggle', 'Trouble' },
+    cmd = 'Trouble',
     keys = {
-      { '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
-      { '<leader>xX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
-      { '<leader>xl', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
-      { '<leader>xq', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle<cr>',
+        desc = 'Diagnostics (Trouble)',
+      },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
+      { '<leader>xl', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>xq', '<cmd>Trouble quickfix toggle<cr>', desc = 'Quickfix List (Trouble)' },
     },
     opts = {},
   },
@@ -148,10 +162,7 @@ return {
   {
     'NvChad/nvim-colorizer.lua',
     config = function()
-      require('colorizer').setup()
+      require('colorizer').setup {}
     end,
   },
-
-  -- Show lightbulb when code actions are available
-  { 'kosayoda/nvim-lightbulb', opts = { autocmd = { enabled = true } } },
 }

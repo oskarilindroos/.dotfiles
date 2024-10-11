@@ -23,7 +23,7 @@ return {
         yaml = { { 'yamlfmt', 'prettierd' } },
         json = { 'prettierd' },
         jsonc = { { 'prettierd', 'prettier' } },
-        -- markdown = { 'prettierd', 'prettier' },
+        markdown = { 'prettierd', 'prettier' },
         html = { { 'prettierd', 'prettier' } },
         css = { { 'prettierd', 'prettier' } },
         javascript = { { 'prettierd', 'prettier' } },

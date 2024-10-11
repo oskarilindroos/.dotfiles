@@ -26,3 +26,12 @@ vim.api.nvim_create_autocmd('InsertEnter', {
     vim.wo.relativenumber = false
   end,
 })
+
+-- No neck pain (center layout on buffer enter)
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'No neck pain',
+  group = vim.api.nvim_create_augroup('no-neck-pain', { clear = true }),
+  callback = function()
+    vim.cmd 'NoNeckPain'
+  end,
+})

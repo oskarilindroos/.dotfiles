@@ -6,7 +6,7 @@ return {
   { 'tpope/vim-sleuth' },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- { 'numToStr/Comment.nvim', opts = {} },
 
   -- Automatically add closing brackets, parenthesis, quotes, etc.
   {

@@ -21,7 +21,7 @@ zinit load agkozak/agkozak-zsh-prompt
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+#zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
@@ -64,6 +64,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias ll='ls -la'
+alias lg='lazygit'
 alias vim='nvim'
 alias c='clear'
 alias dcs='docker ps | rg -v CONTAINER | fzf --multi --header "Choose one or more docker containers to stop" | awk '\''{print $1}'\'' | xargs -I {} docker stop {}'
