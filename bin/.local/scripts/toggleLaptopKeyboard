@@ -1,10 +1,12 @@
 #!/bin/bash
 
-device=12
-state=$(xinput list-props "$device" | grep "Device Enabled" | grep -o "[01]$")
+deviceID=$(xinput list | grep "AT Translated Set 2 keyboard" | sed 's/.*id=\([0-9]*\).*/\1/')
+state=$(xinput list-props "$deviceID" | grep "Device Enabled" | grep -o "[01]$")
 
 if [ $state == '1' ];then
-  xinput --disable "$device"
+  echo "Disabling keyboard with ID $deviceID"
+  xinput --disable "$deviceID"
 else
-  xinput --enable "$device"
+  echo "Enabling keyboard with ID $deviceID"
+  xinput --enable "$deviceID"
 fi
