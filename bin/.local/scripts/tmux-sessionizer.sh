@@ -3,8 +3,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    # Find all git repos in the home directory and pipe them to fzf for selection
-    selected=$(find ~/ -mindepth 0 -maxdepth 6 -name "*.git" -type d -exec dirname {} \; | fzf --preview 'tree -aC {}' --border)
+    # Find all git repos in my directories and pipe them to fzf for selection
+    selected=$(find ~/ ~/Documents/School ~/Documents/Personal -mindepth 0 -maxdepth 4 -name "*.git" -type d -exec dirname {} \; | fzf --preview 'tree -aC {}' --border)
 fi
 
 if [[ -z $selected ]]; then
