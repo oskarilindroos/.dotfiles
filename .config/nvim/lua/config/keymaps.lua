@@ -17,5 +17,5 @@ vim.keymap.set('n', '<leader>ub', ':exec &bg=="light"? "set bg=dark" : "set bg=l
 -- Linewrapping toggle
 vim.keymap.set('n', '<leader>uw', ':set wrap!<CR>', { desc = 'Toggle line wrapping' })
 
--- Show diagnostic floating window (for really long diagnostics)
+-- Show diagnostic floating window (for long diagnostic messages)
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostic floating window' })

@@ -7,31 +7,21 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Relative line numbers in normal mode
-vim.api.nvim_create_autocmd('InsertLeave', {
-  desc = 'Relative line numbers in normal mode',
-  group = vim.api.nvim_create_augroup('relative-line-numbers', { clear = true }),
-  callback = function()
-    vim.wo.number = true
-    vim.wo.relativenumber = true
-  end,
+-- Check if diagnostics are available before setting loclist
+local function safe_set_loclist()
+  if vim.fn.buflisted(vim.api.nvim_get_current_buf()) == 1 then
+    vim.diagnostic.setloclist { open = false }
+  end
+end
+
+-- Populate loclist with the current buffer diagnostics on DiagnosticChanged
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+  desc = 'Populate loclist with the current buffer diagnostics',
+  callback = safe_set_loclist,
 })
 
--- Absolute line numbers in insert mode
-vim.api.nvim_create_autocmd('InsertEnter', {
-  desc = 'Absolute line numbers in insert mode',
-  group = vim.api.nvim_create_augroup('absolute-line-numbers', { clear = true }),
-  callback = function()
-    vim.wo.number = true
-    vim.wo.relativenumber = false
-  end,
-})
-
--- No neck pain (center layout on buffer enter)
-vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'No neck pain',
-  group = vim.api.nvim_create_augroup('no-neck-pain', { clear = true }),
-  callback = function()
-    vim.cmd 'NoNeckPain'
-  end,
+-- Populate loclist with the current buffer diagnostics on BufEnter
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Populate loclist with the current buffer diagnostics',
+  callback = safe_set_loclist,
 })

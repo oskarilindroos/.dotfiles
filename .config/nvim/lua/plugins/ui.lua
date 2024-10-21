@@ -84,22 +84,22 @@ return {
   },
 
   -- Prettier options menu
-  {
-    'stevearc/dressing.nvim',
-    lazy = true,
-    init = function()
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.select = function(...)
-        require('lazy').load { plugins = { 'dressing.nvim' } }
-        return vim.ui.select(...)
-      end
-      ---@diagnostic disable-next-line: duplicate-set-field
-      vim.ui.input = function(...)
-        require('lazy').load { plugins = { 'dressing.nvim' } }
-        return vim.ui.input(...)
-      end
-    end,
-  },
+  -- {
+  --   'stevearc/dressing.nvim',
+  --   lazy = true,
+  --   init = function()
+  --     ---@diagnostic disable-next-line: duplicate-set-field
+  --     vim.ui.select = function(...)
+  --       require('lazy').load { plugins = { 'dressing.nvim' } }
+  --       return vim.ui.select(...)
+  --     end
+  --     ---@diagnostic disable-next-line: duplicate-set-field
+  --     vim.ui.input = function(...)
+  --       require('lazy').load { plugins = { 'dressing.nvim' } }
+  --       return vim.ui.input(...)
+  --     end
+  --   end,
+  -- },
 
   -- Centered layout
   {
@@ -119,8 +119,6 @@ return {
       spec = {
         { '<leader>c', group = 'code' },
         { '<leader>g', group = 'git' },
-        { '<leader>l', group = 'lsp' },
-        { '<leader>x', group = 'trouble' },
         { '<leader>u', group = 'ui' },
         { '<leader>s', group = 'search' },
       },
@@ -137,26 +135,26 @@ return {
   },
 
   -- Better diagnostics, quickfix list
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    cmd = 'Trouble',
-    keys = {
-      {
-        '<leader>xx',
-        '<cmd>Trouble diagnostics toggle<cr>',
-        desc = 'Diagnostics (Trouble)',
-      },
-      {
-        '<leader>xX',
-        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-        desc = 'Buffer Diagnostics (Trouble)',
-      },
-      { '<leader>xl', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
-      { '<leader>xq', '<cmd>Trouble quickfix toggle<cr>', desc = 'Quickfix List (Trouble)' },
-    },
-    opts = {},
-  },
+  -- {
+  --   'folke/trouble.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   cmd = 'Trouble',
+  --   keys = {
+  --     {
+  --       '<leader>xx',
+  --       '<cmd>Trouble diagnostics toggle<cr>',
+  --       desc = 'Diagnostics (Trouble)',
+  --     },
+  --     {
+  --       '<leader>xX',
+  --       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+  --       desc = 'Buffer Diagnostics (Trouble)',
+  --     },
+  --     { '<leader>xl', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
+  --     { '<leader>xq', '<cmd>Trouble quickfix toggle<cr>', desc = 'Quickfix List (Trouble)' },
+  --   },
+  --   opts = {},
+  -- },
 
   -- Show colors in the editor
   {
