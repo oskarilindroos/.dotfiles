@@ -9,6 +9,12 @@ return {
     end,
   },
 
+  -- VScode colorscheme
+  {
+    'Mofiqul/vscode.nvim',
+    opts = {},
+  },
+
   -- Startup screen
   {
     'goolord/alpha-nvim',
@@ -97,37 +103,57 @@ return {
   {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
-    keys = { { '<leader>z', '<cmd>ZenMode<cr>', desc = 'Zen Mode' } },
-    config = function()
-      local zen_mode = require 'zen-mode'
+    keys = {
+      { '<leader>z', '<cmd>ZenMode<cr>', desc = 'Zen Mode' },
+      {
+        '<leader>uz',
+        function()
+          -- Toggle between friendly and unfriendly colorscheme
+          -- Friendly meaning easier to read for other people
+          function toggle_friendly_theme()
+            local current_colorscheme = vim.g.colors_name
+            local friendly_colorscheme = 'vscode'
+            local my_colorscheme = 'neobones'
 
-      vim.keymap.set('n', '<leader>uz', function()
-        zen_mode.toggle {
-          window = {
-            width = 0.5,
-            height = 0.85,
-            options = {
-              signcolumn = 'no',
-              relativenumber = false,
-              number = false,
+            if current_colorscheme ~= friendly_colorscheme then
+              vim.cmd('colorscheme ' .. friendly_colorscheme)
+              vim.o.background = 'dark'
+            else
+              vim.cmd('colorscheme ' .. my_colorscheme)
+              vim.o.background = 'light'
+            end
+          end
+
+          toggle_friendly_theme()
+
+          local zen_mode = require 'zen-mode'
+          zen_mode.toggle {
+            window = {
+              width = 0.75,
+              height = 0.85,
+              options = {
+                signcolumn = 'no',
+                relativenumber = false,
+                number = false,
+              },
             },
             plugins = {
               options = {
                 laststatus = 0,
               },
             },
-          },
-        }
-      end, { desc = 'Distraction-free zen mode' })
-
-      zen_mode.setup {
-        plugins = {
-          options = {
-            laststatus = 3, -- Always show the statusline
-          },
+          }
+        end,
+        desc = 'Distraction-free zen mode',
+      },
+    },
+    opts = {
+      plugins = {
+        options = {
+          laststatus = 3,
         },
-      }
-    end,
+      },
+    },
   },
 
   -- Shows keybinds in a popup
