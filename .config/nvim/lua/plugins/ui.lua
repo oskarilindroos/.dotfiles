@@ -83,31 +83,50 @@ return {
     end,
   },
 
-  -- Prettier options menu
+  -- Centered layout
   -- {
-  --   'stevearc/dressing.nvim',
-  --   lazy = true,
-  --   init = function()
-  --     ---@diagnostic disable-next-line: duplicate-set-field
-  --     vim.ui.select = function(...)
-  --       require('lazy').load { plugins = { 'dressing.nvim' } }
-  --       return vim.ui.select(...)
-  --     end
-  --     ---@diagnostic disable-next-line: duplicate-set-field
-  --     vim.ui.input = function(...)
-  --       require('lazy').load { plugins = { 'dressing.nvim' } }
-  --       return vim.ui.input(...)
-  --     end
+  --   'shortcuts/no-neck-pain.nvim',
+  --   cmd = 'NoNeckPain',
+  --   keys = { { '<leader>un', '<cmd>NoNeckPain<cr>', desc = 'No Neck Pain' } },
+  --   config = function()
+  --     require('no-neck-pain').setup {}
   --   end,
   -- },
 
-  -- Centered layout
+  -- Zen mode (mostly using it for a centered layout)
   {
-    'shortcuts/no-neck-pain.nvim',
-    cmd = 'NoNeckPain',
-    keys = { { '<leader>un', '<cmd>NoNeckPain<cr>', desc = 'No Neck Pain' } },
+    'folke/zen-mode.nvim',
+    cmd = 'ZenMode',
+    keys = { { '<leader>z', '<cmd>ZenMode<cr>', desc = 'Zen Mode' } },
     config = function()
-      require('no-neck-pain').setup {}
+      local zen_mode = require 'zen-mode'
+
+      vim.keymap.set('n', '<leader>uz', function()
+        zen_mode.toggle {
+          window = {
+            width = 0.5,
+            height = 0.85,
+            options = {
+              signcolumn = 'no',
+              relativenumber = false,
+              number = false,
+            },
+            plugins = {
+              options = {
+                laststatus = 0,
+              },
+            },
+          },
+        }
+      end, { desc = 'Distraction-free zen mode' })
+
+      zen_mode.setup {
+        plugins = {
+          options = {
+            laststatus = 3, -- Always show the statusline
+          },
+        },
+      }
     end,
   },
 
@@ -134,10 +153,19 @@ return {
     },
   },
 
+  -- Render markdown better in Neovim
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    opts = {},
+  },
+
   -- Better diagnostics, quickfix list
   -- {
   --   'folke/trouble.nvim',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   dependencies = {  'nvim-tree/nvim-web-devicons' },
   --   cmd = 'Trouble',
   --   keys = {
   --     {
@@ -159,8 +187,6 @@ return {
   -- Show colors in the editor
   {
     'NvChad/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup {}
-    end,
+    opts = {},
   },
 }
