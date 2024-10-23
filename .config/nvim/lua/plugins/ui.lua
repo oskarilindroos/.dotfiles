@@ -129,7 +129,7 @@ return {
           local zen_mode = require 'zen-mode'
           zen_mode.toggle {
             window = {
-              width = 0.75,
+              width = 0.6,
               height = 0.85,
               options = {
                 signcolumn = 'no',
@@ -141,6 +141,7 @@ return {
               options = {
                 laststatus = 0,
               },
+              twilight = { enabled = true },
             },
           }
         end,
@@ -152,8 +153,16 @@ return {
         options = {
           laststatus = 3,
         },
+        twilight = { enabled = false },
       },
     },
+  },
+
+  -- Dim inactive code
+  {
+    'folke/twilight.nvim',
+    cmd = 'Twilight',
+    opts = {},
   },
 
   -- Shows keybinds in a popup
