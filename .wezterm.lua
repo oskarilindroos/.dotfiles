@@ -6,7 +6,10 @@ config.font = wezterm.font("GoMono Nerd Font")
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.font_size = 14.0
 
--- Fix for Hyprland
+-- Reverse cursor color like in other terminal emulators
+config.force_reverse_video_cursor = true
+
+-- Fix for Wayland
 config.enable_wayland = false
 
 -- Window settings
@@ -27,7 +30,6 @@ config.color_scheme = "neobones_light"
 wezterm.on("toggle-colorscheme", function(window, _)
 	local overrides = window:get_config_overrides() or {}
 	if not overrides.color_scheme then
-		-- Override the color scheme with Bitmute (dark theme)
 		overrides.color_scheme = "neobones_dark"
 	else
 		overrides.color_scheme = nil
