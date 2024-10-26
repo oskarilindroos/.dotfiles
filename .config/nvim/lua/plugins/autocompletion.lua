@@ -109,6 +109,7 @@ return {
   -- Github Copilot suggestions
   {
     'github/copilot.vim',
+    cmd = 'Copilot',
   },
 
   -- Cmdline autocompletion

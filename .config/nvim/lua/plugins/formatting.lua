@@ -26,6 +26,8 @@ return {
         markdown = { 'prettierd', 'prettier' },
         html = { { 'prettierd', 'prettier' } },
         css = { { 'prettierd', 'prettier' } },
+        cpp = { { 'clang-format', 'prettier' } },
+        c = { { 'clang-format', 'prettier' } },
         javascript = { { 'prettierd', 'prettier' } },
         typescript = { { 'prettierd', 'prettier' } },
         javascriptreact = { { 'prettierd', 'prettier' } },
