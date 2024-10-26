@@ -1,24 +1,6 @@
 # .dotfiles
 
-This repository contains my personal dotfiles. The dotfiles are managed using GNU Stow.
-
-## Dependencies
-
-| Dependency      | Description           |
-| --------------- | --------------------- |
-| bash            | Shell                 |
-| starship        | Prompt                |
-| wezterm         | Terminal              |
-| tmux            | Terminal multiplexer  |
-| neovim          | Text editor           |
-| lazygit         | Git terminal UI       |
-| fzf             | Fuzzy finder          |
-| ripgrep         | Search tool           |
-| stow            | Symlink farm manager  |
-| sway            | Tiling window manager |
-| sway-screenshot | Screenshot tool       |
-| autotiling      | Autotiling script     |
-| rofi            | Application launcher  |
+This repository contains my personal dotfiles for Linux. The dotfiles are managed using GNU Stow.
 
 ## Screenshot
 
