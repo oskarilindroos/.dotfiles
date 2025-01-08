@@ -25,3 +25,11 @@ vim.api.nvim_create_autocmd('BufEnter', {
   desc = 'Populate loclist with the current buffer diagnostics',
   callback = safe_set_loclist,
 })
+
+-- Activate ZenMode when entering Vim
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Activate ZenMode when entering Vim',
+  callback = function()
+    require('zen-mode').toggle()
+  end,
+})
