@@ -18,22 +18,13 @@ exec_always autotiling
 # Flux-like color temperature adjustment
 exec_always gammastep -l 61.4971:23.7526
 
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-# set $menu dmenu_path | wmenu | xargs swaymsg exec --
-set $rofi_cmd rofi \
-        -terminal '$term'
-
-set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+set $menu tofi-drun --drun-launch=true
 
 ### Output configuration
 output * bg ~/Pictures/wallpaper.png fit '#ffffff'
 
 # Desktop monitors
-output DP-1 resolution 1920x1080@144.001Hz position 3840,0
-output 'Sony SONY TV  *30 0x01010101' scale 2 position 1920,0 resolution 3840x2160@60Hz
-output 'Samsung Electric Company LF24T450F HK2T502133' resolution 1920x1080@74.973Hz position 5760,0 transform 270
+output DSI-1 resolution 1200x1920 scale 1.5 transform 90
 
 ### Input configuration
 # Touchpad configuration

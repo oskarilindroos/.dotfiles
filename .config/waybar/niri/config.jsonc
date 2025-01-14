@@ -1,7 +1,7 @@
 {
   "position": "top",
   "layer": "top",
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["niri/workspaces"],
   "modules-center": ["custom/playerlabel", "custom/playerctl"],
   "modules-right": [
     "backlight",
@@ -10,7 +10,7 @@
     "pulseaudio",
     "network#mullvad",
     "network",
-    "custom/weather",
+    //"custom/weather",
     "clock",
     "group/power",
   ],
@@ -30,13 +30,7 @@
       "transition-duration": 500,
       "transition-left-to-right": false,
     },
-    "modules": [
-      "custom/power",
-      "keyboard-state",
-      "custom/togglekeyboard",
-      "cpu",
-      "memory",
-    ],
+    "modules": ["custom/power", "keyboard-state", "cpu", "memory"],
   },
 
   "clock": {
@@ -66,12 +60,12 @@
     },
   },
 
-  "hyprland/workspaces": {
-    "active-only": false,
+  "niri/workspaces": {
+    "active-only": true,
     "all-outputs": false,
     "disable-scroll": false,
-    "on-scroll-up": "hyprctl dispatch workspace -1",
-    "on-scroll-down": "hyprctl dispatch workspace +1",
+    //"on-scroll-up": "hyprctl dispatch workspace -1",
+    //"on-scroll-down": "hyprctl dispatch workspace +1",
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
@@ -92,11 +86,6 @@
       "15": "5",
       "sort-by": "number",
     },
-  },
-
-  "hyprland/window": {
-    "max-length": 48,
-    "separate-outputs": true,
   },
 
   "custom/playerlabel": {
@@ -132,12 +121,6 @@
     },
   },
 
-  "custom/togglekeyboard": {
-    "format": "toggle",
-    "tooltip": false,
-    "on-click": "",
-  },
-
   "custom/power": {
     "format": "󰐥",
     "tooltip": false,
@@ -158,10 +141,11 @@
       "critical": 15,
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
+    "format-charging": "{ {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-alt": "{icon} {time}",
     "format-icons": ["", "", "", "", ""],
+    "interval": 5,
   },
 
   "memory": {
@@ -179,7 +163,7 @@
   "disk": {
     "format": "Disk {}%",
     "format-alt": "Disk {used}/{total} GiB",
-    "interval": 5,
+    "interval": 200,
     "path": "/mnt/Datos",
   },
 
@@ -207,6 +191,8 @@
   "backlight": {
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-scroll-up": "brightnessctl s +5%",
+    "on-scroll-down": "brightnessctl s 5%-",
   },
 
   "pulseaudio": {

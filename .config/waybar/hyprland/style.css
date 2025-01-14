@@ -6,7 +6,7 @@
     Iosevka,
     FontAwesome,
     Noto Sans CJK;
-  font-size: 16px;
+  font-size: 1.3rem;
   font-weight: bold;
   margin: 0px;
   padding: 0px;
@@ -23,6 +23,7 @@ window#waybar {
 }
 
 #workspaces button {
+  color: black;
   padding: 0px 4px;
 }
 
@@ -54,13 +55,17 @@ window#waybar {
 #window,
 #backlight,
 #custom-weather,
+#custom-notification,
 #custom-togglekeyboard,
 #battery,
 #cpu,
+#tray,
 #bluetooth,
 #keyboard-state,
 #memory,
+#custom-rotate-screen,
 #disk {
+  color: black;
   border-left: solid 1px black;
   padding: 0px 12px;
 }
@@ -81,6 +86,10 @@ window#waybar {
 #pulseaudio.muted {
   color: gray;
   margin-left: 0px;
+}
+
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
 }
 
 #pulseaudio-slider slider {

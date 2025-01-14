@@ -1,0 +1,8 @@
+profile Dock {
+    output DSI-1 disable
+    output HDMI-A-1 enable
+}
+
+profile Laptop {
+    output DSI-1 enable
+}
