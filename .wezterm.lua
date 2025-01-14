@@ -9,12 +9,9 @@ config.font_size = 14.0
 -- Reverse cursor color like in other terminal emulators
 config.force_reverse_video_cursor = true
 
--- Fix for Wayland
-config.enable_wayland = false
-
 -- Window settings
 config.hide_tab_bar_if_only_one_tab = true
--- config.window_decorations = "RESIZE" -- Only show the resize handle
+config.window_decorations = "NONE"
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = {
 	left = 0,
@@ -56,7 +53,7 @@ config.keys = {
 	},
 	{ -- Toggle fullscreen
 		key = "F",
-		mods = "CTRL",
+		mods = "ALT",
 		action = wezterm.action.ToggleFullScreen,
 	},
 }
