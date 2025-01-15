@@ -48,7 +48,6 @@ window#waybar {
 }
 
 #custom-date,
-#clock,
 #battery,
 #pulseaudio,
 #network,
@@ -59,6 +58,7 @@ window#waybar {
 #custom-togglekeyboard,
 #battery,
 #cpu,
+#custom-night-light,
 #tray,
 #bluetooth,
 #keyboard-state,

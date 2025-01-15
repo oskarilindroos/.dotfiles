@@ -30,6 +30,22 @@ return {
         dashboard.button('s', '> Session restore', ':lua require("persistence").load()<CR>'),
         dashboard.button('q', '> Quit', ':qa<CR>'),
       }
+
+      dashboard.section.footer.val = {
+        '花は花ではない',
+        'A Flower is not a flower',
+      }
+
+      dashboard.section.header.val = {
+        '                                                     ',
+        '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+        '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+        '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+        '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+        '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+        '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+        '                                                     ',
+      }
       alpha.setup(dashboard.opts)
     end,
   },

@@ -2,7 +2,7 @@
   "position": "top",
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["custom/playerlabel", "custom/playerctl"],
+  "modules-center": ["clock"],
   "modules-right": [
     "backlight",
     //"bluetooth",
@@ -10,10 +10,10 @@
     "pulseaudio",
     //"network#mullvad",
     //"network",
+    "custom/night-light",
     "custom/rotate-screen",
     "tray",
     //"custom/weather",
-    "clock",
     "custom/notification",
     "group/power",
   ],
@@ -141,6 +141,12 @@
     "format": "",
     "tooltip": false,
     "on-click": "/home/oskari/bin/.local/scripts/rotate.sh",
+  },
+
+  "custom/night-light": {
+    "format": "",
+    //"exec": "~/bin/.local/scripts/toggleBlueLightFilter.sh",
+    "on-click": "/home/oskari/bin/.local/scripts/toggleBlueLightFilter.sh",
   },
 
   "custom/notification": {
