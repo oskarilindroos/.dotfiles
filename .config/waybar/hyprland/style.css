@@ -63,6 +63,7 @@ window#waybar {
 #bluetooth,
 #keyboard-state,
 #memory,
+#pulseaudio.microphone,
 #custom-rotate-screen,
 #disk {
   color: black;

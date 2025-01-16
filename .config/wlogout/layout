@@ -18,13 +18,13 @@
 }
 {
     "label" : "hibernate",
-    "action" : "systemctl hibernate && hyprlock --immediate",
+    "action" : "systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
 {
     "label" : "suspend",
-    "action" : "systemctl suspend && hyprlock --immediate",
+    "action" : "systemctl suspend",
     "text" : "Suspend",
     "keybind" : "s"
 }

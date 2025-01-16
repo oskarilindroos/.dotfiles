@@ -8,6 +8,7 @@
     //"bluetooth",
     "battery",
     "pulseaudio",
+    //"pulseaudio#microphone",
     //"network#mullvad",
     //"network",
     "custom/night-light",
@@ -41,10 +42,11 @@
     "format": "{:%H:%M:%S}",
     "format-alt": "{:%A %d.%m.%Y}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "locale": "fi_FI",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
-      "weeks-pos": "right",
+      "weeks-pos": "left",
       "on-scroll": 1,
       "format": {
         "months": "<span color='#ffead3'><b>{}</b></span>",
@@ -232,15 +234,25 @@
   },
 
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon} {volume}% {format_source}",
     "format-muted": "󰝟 {volume}%",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
     "format-icons": {
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "default": ["󰕾"],
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click-right": "pavucontrol",
+    "scroll-step": 5,
   },
 
   "pulseaudio/slider": {
