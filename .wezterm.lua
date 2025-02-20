@@ -10,6 +10,7 @@ config.font_size = 14.0
 config.force_reverse_video_cursor = true
 
 -- Window settings
+-- config.window_background_opacity = 0.8
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "NONE"
 config.window_close_confirmation = "NeverPrompt"
@@ -21,7 +22,7 @@ config.window_padding = {
 }
 
 -- Color scheme (default)
-config.color_scheme = "neobones_light"
+config.color_scheme = "vimbones"
 
 -- Event handler for toggling the colorscheme between light and dark
 wezterm.on("toggle-colorscheme", function(window, _)

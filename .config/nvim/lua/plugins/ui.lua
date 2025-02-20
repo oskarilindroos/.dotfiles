@@ -5,7 +5,7 @@ return {
     dependencies = 'rktjmp/lush.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      vim.cmd.colorscheme 'neobones'
+      vim.cmd.colorscheme 'vimbones'
     end,
   },
 
@@ -214,26 +214,26 @@ return {
   },
 
   -- Better diagnostics, quickfix list
-  -- {
-  --   'folke/trouble.nvim',
-  --   dependencies = {  'nvim-tree/nvim-web-devicons' },
-  --   cmd = 'Trouble',
-  --   keys = {
-  --     {
-  --       '<leader>xx',
-  --       '<cmd>Trouble diagnostics toggle<cr>',
-  --       desc = 'Diagnostics (Trouble)',
-  --     },
-  --     {
-  --       '<leader>xX',
-  --       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-  --       desc = 'Buffer Diagnostics (Trouble)',
-  --     },
-  --     { '<leader>xl', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
-  --     { '<leader>xq', '<cmd>Trouble quickfix toggle<cr>', desc = 'Quickfix List (Trouble)' },
-  --   },
-  --   opts = {},
-  -- },
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = 'Trouble',
+    keys = {
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle<cr>',
+        desc = 'Diagnostics (Trouble)',
+      },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
+      { '<leader>xl', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>xq', '<cmd>Trouble quickfix toggle<cr>', desc = 'Quickfix List (Trouble)' },
+    },
+    opts = {},
+  },
 
   -- Show colors in the editor
   {

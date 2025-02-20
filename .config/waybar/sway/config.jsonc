@@ -1,7 +1,7 @@
 {
   "position": "top",
   "layer": "top",
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["sway/workspaces"],
   "reload_style_on_change": true,
   //"margin": "6",
   "modules-center": ["clock"],
@@ -67,7 +67,7 @@
     },
   },
 
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "active-only": false,
     "all-outputs": false,
     "disable-scroll": false,

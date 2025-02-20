@@ -15,13 +15,12 @@ set $term wezterm
 # Autotiling script
 exec_always autotiling
 
-# Flux-like color temperature adjustment
-exec_always gammastep -l 61.4971:23.7526
+exec_always waybar -c "/home/oskari/.config/waybar/sway/config.jsonc" -s "/home/oskari/.config/waybar/sway/yellow.css" 
 
 set $menu tofi-drun --drun-launch=true
 
 ### Output configuration
-output * bg ~/Pictures/wallpaper.png fit '#ffffff'
+# output * bg ~/Pictures/wallpaper.png fit '#ffffff'
 
 # Desktop monitors
 output DSI-1 resolution 1200x1920 scale 1.5 transform 90
@@ -256,36 +255,30 @@ titlebar_border_thickness 1
 font 'Go Mono' 12
 default_border pixel 2
 
-# Status Bar:
-# set $wifi $(nmcli radio wifi | sed -e "s/enabled/on/" -e "s/disabled/off/")
-# set $volu $(amixer get Master | grep "Right:" | grep -E -o "[[0-9%]+]\s[[A-Za-z]+]")
-# set $micr $(amixer get Capture | grep "Right:" | grep -E -o "[[A-Za-z]+]")
-# set $batt $(cat /sys/class/power_supply/BAT0/capacity)
-# set $date $(date +"%a %d.%m.%Y %H:%M:%S")
-# set $status vol: [$volu] bat: [$batt%] $date
-
 gaps inner 10
 gaps outer 0
 
-bar {
-    position top
-    # mode hide
-    # hidden_state hide
-    # modifier $mod
-    strip_workspace_numbers yes
-
-    # status_command while echo $status; do sleep 1; done
-    status_command while ~/.config/sway/swaybar.sh; do sleep 1; done
-
-    colors {
-            statusline $black
-            background $lightGrey
-            
-            focused_workspace  $black $black $white
-            active_workspace   $darkGrey $darkGrey $black
-            inactive_workspace $lightGrey $lightGrey $black
-        }
-}
+# bar {
+#     # position top
+#     # mode hide
+#     # hidden_state hide
+#     # modifier $mod
+#     # strip_workspace_numbers yes
+#
+#     # swaybar_command waybar -c "/home/oskari/.config/waybar/sway/config.jsonc" -s "/home/oskari/.config/waybar/sway/yellow.css" 
+#
+#     # status_command while echo $status; do sleep 1; done
+#     # status_command while ~/.config/sway/swaybar.sh; do sleep 1; done
+#
+#     # colors {
+#     #         statusline $black
+#     #         background $lightGrey
+#     #
+#     #         focused_workspace  $black $black $white
+#     #         active_workspace   $darkGrey $darkGrey $black
+#     #         inactive_workspace $lightGrey $lightGrey $black
+#     #     }
+# }
 
 # Hide the mouse cursor while using keyboard
 seat * hide_cursor when-typing enable
