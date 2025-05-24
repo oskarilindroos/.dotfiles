@@ -12,7 +12,7 @@ config.force_reverse_video_cursor = true
 -- Window settings
 -- config.window_background_opacity = 0.8
 config.hide_tab_bar_if_only_one_tab = true
-config.window_decorations = "NONE"
+-- config.window_decorations = "NONE"
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = {
 	left = 0,
