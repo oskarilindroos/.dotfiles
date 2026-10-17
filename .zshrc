@@ -74,4 +74,4 @@ alias did='docker images | rg -v IMAGE | fzf --multi --header "Choose one or mor
 
 # Shell integrations
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
