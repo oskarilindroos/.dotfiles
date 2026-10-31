@@ -41,6 +41,11 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+# Alt + Left/Right to move by word, Alt + Up/Down to search history
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3A' history-search-backward
+bindkey '^[[1;3B' history-search-forward
 
 # History
 HISTSIZE=5000
